@@ -318,13 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a463dea37a445742bbe7039f8411dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToReflect:
-  - {fileID: 0}
+  objectsToReflect: []
   shaderForMirroredObjects: {fileID: 4800000, guid: a956924bd6a8ae44ca741bc69e575fe3,
     type: 3}
   reflectionObjects: []
-  mirrorNormal: {x: 0, y: 0, z: 0}
-  mirrorPlaneNormal: {x: 0, y: 0, z: 0}
   tempMaterial: {fileID: 0}
   mirrorPlanePosition: 0
 --- !u!136 &136011415558727100
