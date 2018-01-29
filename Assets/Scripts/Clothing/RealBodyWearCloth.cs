@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StayAtLocalPosition : MonoBehaviour
+public class RealBodyWearCloth : MonoBehaviour
 {
+
+
+    public List<GameObject> clothes; // The cloth(es) currently wearing
+
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = Vector3.zero;
-        transform.localEulerAngles = Vector3.zero;
+
     }
+
+    
 }

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Mirror : MonoBehaviour
 {
-    public List<GameObject> objectsToReflect; // What object should be reflected by the mirror
     public Shader shaderForMirroredObjects; // The special stencil shader that will be applied to the objects in the mirror which can only be seen through the mirror
 
+    public List<GameObject> objectsToReflect; // What object should be reflected by the mirror
     public List<GameObject> reflectionObjects; // The objects for what is reflected by the mirror
     public static Vector3 mirrorNormal; // The normal of the mirror
     public static Mirror staticMirrorRef; // The static reference of this mirror
+    public static Shader sShaderForMirroredObjects; // The static reference of the mirror shader
     //public Vector3 mirrorPlaneNormal; // The normal of the mirror
-    public Material tempMaterial; // The temporary material for switching shader for the mirror objects
+    //public Material tempMaterial; // The temporary material for switching shader for the mirror objects
 
     /// <summary>
     /// Testing
@@ -24,6 +25,7 @@ public class Mirror : MonoBehaviour
     void Start()
     {
         staticMirrorRef = this;
+        sShaderForMirroredObjects = shaderForMirroredObjects;
     }
 
     // Update is called once per frame
@@ -58,39 +60,11 @@ public class Mirror : MonoBehaviour
     {
         GameObject newMirrorObject = Instantiate(realObject); // Instantiate the mirror copy for the real object
 
-        // Disable any colliders in the mirror object
-        foreach (Collider c in newMirrorObject.GetComponentsInChildren<Collider>())
-        {
-            c.enabled = false;
-        }
-
-        // Remove any rigidbody in the mirror object
-        foreach (Rigidbody r in newMirrorObject.GetComponentsInChildren<Rigidbody>())
-        {
-            Destroy(r);
-        }
-
-        // Change the layer of the mirror object
-
-        foreach (Transform t in newMirrorObject.GetComponentsInChildren<Transform>())
-        {
-            t.gameObject.layer = LayerMask.NameToLayer("MirrorWorld");
-        }
-
-        // Change the shaders in the mirror object so the mirror object only appears in the mirror
-        foreach (MeshRenderer mr in newMirrorObject.GetComponentsInChildren<MeshRenderer>())
-        {
-            mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // Don't let the mirror object cast shadows
-
-            foreach (Material m in mr.materials)
-            {
-                m.shader = shaderForMirroredObjects;
-            }
-        }
-
         // Change the RealWorldObject component to MirrorWorldObject
         Destroy(newMirrorObject.GetComponent<RealWorldObject>());
         newMirrorObject.AddComponent<MirrorWorldObject>();
+
+        newMirrorObject.transform.localScale = realObject.transform.lossyScale; // Re-scale the new mirror object respect to the world
 
         objectsToReflect.Add(realObject); // Add this real object into the real object list
         reflectionObjects.Add(newMirrorObject); // Add this mirror object into the mirrored object list
