@@ -5,6 +5,7 @@ using UnityEngine;
 public class RealWorldObject : MonoBehaviour
 {
     public bool alwaysMirror; // Should this object always have a mirror? i.e. the floor or ceiling of the room
+    public GameObject replacingMirrorObject; // An object used in the mirror world if the original object is not "left&right" symmetry
 
     public GameObject mirrorCopy; // The copy on the mirror side
 
@@ -14,9 +15,15 @@ public class RealWorldObject : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("RealWorld"); // Change the layer of this object to "RealWorld"
 
         // If the object is a light source, then make it not shine on mirror objects
-        if(GetComponent<Light>())
+        if (GetComponent<Light>())
         {
             GetComponent<Light>().cullingMask = ~512;
+        }
+
+        // If the object is "left&right" symmetry, then use itself as the object used in the mirror world
+        if (replacingMirrorObject == null)
+        {
+            replacingMirrorObject = gameObject;
         }
     }
 
@@ -26,7 +33,7 @@ public class RealWorldObject : MonoBehaviour
         // If the object is on the mirror's reflective side but doesn't have a copy in the mirror world
         if (mirrorCopy == null && ShouldHaveReflection())
         {
-            Mirror.staticMirrorRef.InstantiateMirrorWorldObject(gameObject);
+            Mirror.staticMirrorRef.InstantiateMirrorWorldObject(replacingMirrorObject);
         }
 
         // If the object is on the mirror's non-reflective side but has a copy in the mirror world
