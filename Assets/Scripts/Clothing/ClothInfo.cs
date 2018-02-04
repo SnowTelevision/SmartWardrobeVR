@@ -8,8 +8,11 @@ public class ClothInfo : MonoBehaviour
     public Vector3 clothLocalPosition; // Where the cloth should be relate to the body part
     public Vector3 clothLocalEulerAngles; // What's the cloth's rotation relate to the body part
     public bool freelyWear; // Does the cloth has a fixed position on the body, or can be put on any part of the body
+    public string clothName; // Name of the cloth
 
     public bool isWeared; // If the cloth is currently weared
+    public WardrobeClothOrganizer clothLocation; // Where is the cloth put inside the wardrobe? (If it is not in the wardrobe then this will be null)
+    public GameObject virtualAvatar; // The gameobject for its virtual model in the wardrobe database
 
     // Use this for initialization
     void Start()
@@ -19,6 +22,13 @@ public class ClothInfo : MonoBehaviour
         {
             gameObject.AddComponent<RealWorldObject>();
             GetComponent<RealWorldObject>().alwaysMirror = false;
+
+            // If the cloth doesn't already have a model for its virtual avatar
+            if (virtualAvatar == null)
+            {
+                virtualAvatar = Instantiate(gameObject);
+                virtualAvatar.GetComponent<ClothInfo>().isRealCloth = false;
+            }
         }
     }
 

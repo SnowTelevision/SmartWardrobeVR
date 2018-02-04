@@ -90,28 +90,28 @@ public class Mirror : MonoBehaviour
     /// </summary>
     /// <param name="real"></param>
     /// <param name="reflected"></param>
-    public void CalculateReflectedTransform(Transform real, Transform reflected)
+    public static void CalculateReflectedTransform(Transform real, Transform reflected)
     {
         // Calculate position
-        Vector3 realPosition = transform.InverseTransformPoint(real.position);
-        Vector3 mirrorPosition = realPosition - 2 * mirrorNormal
-                                                  * Vector3.Dot(realPosition, mirrorNormal)
-                                                  / Vector3.Dot(mirrorNormal, mirrorNormal);
-        reflected.position = transform.TransformPoint(mirrorPosition);
+        Vector3 realPosition = Mirror.staticMirrorRef.transform.InverseTransformPoint(real.position);
+        Vector3 mirrorPosition = realPosition - 2 * Mirror.mirrorNormal
+                                                  * Vector3.Dot(realPosition, Mirror.mirrorNormal)
+                                                  / Vector3.Dot(Mirror.mirrorNormal, Mirror.mirrorNormal);
+        reflected.position = Mirror.staticMirrorRef.transform.TransformPoint(mirrorPosition);
 
         // Calculate forward direction
-        Vector3 realForward = transform.InverseTransformPoint(real.TransformPoint(Vector3.forward));
-        Vector3 mirrorForward = realForward - 2 * mirrorNormal
-                                                * Vector3.Dot(realForward, mirrorNormal)
-                                                / Vector3.Dot(mirrorNormal, mirrorNormal);
+        Vector3 realForward = Mirror.staticMirrorRef.transform.InverseTransformPoint(real.TransformPoint(Vector3.forward));
+        Vector3 mirrorForward = realForward - 2 * Mirror.mirrorNormal
+                                                * Vector3.Dot(realForward, Mirror.mirrorNormal)
+                                                / Vector3.Dot(Mirror.mirrorNormal, Mirror.mirrorNormal);
 
         // Calculate up direction
-        Vector3 realUp = transform.InverseTransformPoint(real.TransformPoint(Vector3.up));
-        Vector3 mirrorUp = realUp - 2 * mirrorNormal
-                                      * Vector3.Dot(realUp, mirrorNormal)
-                                      / Vector3.Dot(mirrorNormal, mirrorNormal);
+        Vector3 realUp = Mirror.staticMirrorRef.transform.InverseTransformPoint(real.TransformPoint(Vector3.up));
+        Vector3 mirrorUp = realUp - 2 * Mirror.mirrorNormal
+                                      * Vector3.Dot(realUp, Mirror.mirrorNormal)
+                                      / Vector3.Dot(Mirror.mirrorNormal, Mirror.mirrorNormal);
 
-        reflected.LookAt(transform.TransformPoint(mirrorForward), reflected.TransformDirection(reflected.InverseTransformPoint(transform.TransformPoint(mirrorUp))));
+        reflected.LookAt(Mirror.staticMirrorRef.transform.TransformPoint(mirrorForward), reflected.TransformDirection(reflected.InverseTransformPoint(Mirror.staticMirrorRef.transform.TransformPoint(mirrorUp))));
 
         // Test
         //if (real.name == "Sphere")

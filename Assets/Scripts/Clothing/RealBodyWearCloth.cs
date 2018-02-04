@@ -39,6 +39,7 @@ public class RealBodyWearCloth : MonoBehaviour
         clothes.Add(newCloth);
         newCloth.transform.parent = gameObject.transform;
         newCloth.GetComponent<Rigidbody>().useGravity = false;
+        newCloth.GetComponent<Rigidbody>().isKinematic = true;
         newCloth.GetComponent<Rigidbody>().velocity = Vector3.zero;
         newCloth.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         newCloth.isWeared = true;
@@ -68,6 +69,7 @@ public class RealBodyWearCloth : MonoBehaviour
         clothes.Remove(thisCloth);
         thisCloth.transform.parent = null;
         thisCloth.GetComponent<Rigidbody>().useGravity = true;
+        thisCloth.GetComponent<Rigidbody>().isKinematic = false;
         thisCloth.isWeared = false;
     }
 }
