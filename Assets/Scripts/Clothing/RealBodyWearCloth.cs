@@ -8,6 +8,7 @@ public class RealBodyWearCloth : MonoBehaviour
 
 
     public List<ClothInfo> clothes; // The cloth(es) currently wearing
+    public ClothInfo currentVirtualCloth; // The virtual cloth that is currently trying on in the mirror
 
     // Use this for initialization
     void Start()
@@ -36,13 +37,32 @@ public class RealBodyWearCloth : MonoBehaviour
     /// <param name="newCloth"></param>
     public void WearCloth(ClothInfo newCloth)
     {
-        clothes.Add(newCloth);
-        newCloth.transform.parent = gameObject.transform;
-        newCloth.GetComponent<Rigidbody>().useGravity = false;
-        newCloth.GetComponent<Rigidbody>().isKinematic = true;
-        newCloth.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        newCloth.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        newCloth.isWeared = true;
+        if (newCloth.isRealCloth)
+        {
+            clothes.Add(newCloth);
+            newCloth.transform.parent = gameObject.transform;
+            newCloth.GetComponent<Rigidbody>().useGravity = false;
+            newCloth.GetComponent<Rigidbody>().isKinematic = true;
+            newCloth.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            newCloth.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            newCloth.isWeared = true;
+        }
+        else
+        {
+            if (currentVirtualCloth != null)
+            {
+                Destroy(currentVirtualCloth);
+            }
+
+            currentVirtualCloth = newCloth;
+            newCloth.transform.parent = gameObject.transform;
+            newCloth.GetComponent<Rigidbody>().isKinematic = true;
+            newCloth.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            newCloth.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            newCloth.isWeared = true;
+            newCloth.GetComponent<MeshRenderer>().enabled = false;
+            newCloth.GetComponent<Collider>().enabled = false;
+        }
 
         if (!newCloth.freelyWear)
         {

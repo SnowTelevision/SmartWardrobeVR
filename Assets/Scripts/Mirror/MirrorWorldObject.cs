@@ -51,6 +51,10 @@ public class MirrorWorldObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Destroy the mirror copy is the real copy is inactive
+        if (!realCopy.activeInHierarchy)
+        {
+            Mirror.staticMirrorRef.DestroyMirrorWorldObject(gameObject);
+        }
     }
 }

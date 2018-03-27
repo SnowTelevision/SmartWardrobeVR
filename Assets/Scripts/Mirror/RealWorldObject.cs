@@ -12,7 +12,11 @@ public class RealWorldObject : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        gameObject.layer = LayerMask.NameToLayer("RealWorld"); // Change the layer of this object to "RealWorld"
+        // If this object is not a virtual menu item
+        if (gameObject.layer != LayerMask.NameToLayer("MenuItem"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("RealWorld"); // Change the layer of this object to "RealWorld"
+        }
 
         // If the object is a light source, then make it not shine on mirror objects
         if (GetComponent<Light>())
@@ -43,7 +47,10 @@ public class RealWorldObject : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// If the object is in the front side of the mirror then it should have a reflection
+    /// </summary>
+    /// <returns></returns>
     public bool ShouldHaveReflection()
     {
         // If the object should always have a mirror
@@ -60,6 +67,15 @@ public class RealWorldObject : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Destroy the mirror copy if the real copy is destroyed
+        if (mirrorCopy != null)
+        {
+            Mirror.staticMirrorRef.DestroyMirrorWorldObject(mirrorCopy);
         }
     }
 }

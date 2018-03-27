@@ -62,6 +62,17 @@ public class Mirror : MonoBehaviour
 
         // Change the RealWorldObject component to MirrorWorldObject
         Destroy(newMirrorObject.GetComponent<RealWorldObject>());
+
+        if (newMirrorObject.GetComponent<ClothInfo>())
+        {
+            Destroy(newMirrorObject.GetComponent<ClothInfo>());
+        }
+
+        //if (newMirrorObject.GetComponent<SteamVR_RenderModel>())
+        //{
+        //    newMirrorObject.GetComponent<SteamVR_RenderModel>().shader = sShaderForMirroredObjects;
+        //}
+
         newMirrorObject.AddComponent<MirrorWorldObject>();
 
         newMirrorObject.transform.localScale = realObject.transform.lossyScale; // Re-scale the new mirror object respect to the world
@@ -100,23 +111,37 @@ public class Mirror : MonoBehaviour
         reflected.position = Mirror.staticMirrorRef.transform.TransformPoint(mirrorPosition);
 
         // Calculate forward direction
-        Vector3 realForward = Mirror.staticMirrorRef.transform.InverseTransformPoint(real.TransformPoint(Vector3.forward));
+        Vector3 realForward = Mirror.staticMirrorRef.transform.InverseTransformDirection(real.TransformDirection(Vector3.forward));
         Vector3 mirrorForward = realForward - 2 * Mirror.mirrorNormal
                                                 * Vector3.Dot(realForward, Mirror.mirrorNormal)
                                                 / Vector3.Dot(Mirror.mirrorNormal, Mirror.mirrorNormal);
 
         // Calculate up direction
-        Vector3 realUp = Mirror.staticMirrorRef.transform.InverseTransformPoint(real.TransformPoint(Vector3.up));
+        Vector3 realUp = Mirror.staticMirrorRef.transform.InverseTransformDirection(real.TransformDirection(Vector3.up));
         Vector3 mirrorUp = realUp - 2 * Mirror.mirrorNormal
                                       * Vector3.Dot(realUp, Mirror.mirrorNormal)
                                       / Vector3.Dot(Mirror.mirrorNormal, Mirror.mirrorNormal);
 
-        reflected.LookAt(Mirror.staticMirrorRef.transform.TransformPoint(mirrorForward), reflected.TransformDirection(reflected.InverseTransformPoint(Mirror.staticMirrorRef.transform.TransformPoint(mirrorUp))));
+        // Test
+        //if (real.name == "Sport (1)")
+        //{
+        //    print("real copy up: " + staticMirrorRef.transform.InverseTransformPoint(real.TransformPoint(Vector3.up)) + ", real copy forward: " + staticMirrorRef.transform.InverseTransformPoint(real.TransformPoint(Vector3.forward)));
+        //    print("forward: " + staticMirrorRef.transform.TransformPoint(mirrorForward) + ", up: " + staticMirrorRef.transform.TransformPoint(mirrorUp) + ", calculated local up: " + reflected.InverseTransformPoint(staticMirrorRef.transform.TransformPoint(mirrorUp)) + ", real local up: " + reflected.InverseTransformPoint(reflected.up));
+        //    print("forward: " + Mirror.staticMirrorRef.transform.TransformPoint(mirrorForward) + ", up: " + reflected.TransformDirection(reflected.InverseTransformPoint(Mirror.staticMirrorRef.transform.TransformPoint(mirrorUp))));
+
+        //    print("mirror up: " + mirrorUp);
+        //    print("Mirror.staticMirrorRef.transform.TransformPoint(mirrorUp): " + Mirror.staticMirrorRef.transform.TransformPoint(mirrorUp));
+        //    print(reflected.InverseTransformPoint(Mirror.staticMirrorRef.transform.TransformPoint(mirrorUp)));
+
+        //}
+
+        reflected.LookAt(reflected.transform.position + Mirror.staticMirrorRef.transform.TransformDirection(mirrorForward), reflected.TransformDirection(reflected.InverseTransformDirection(Mirror.staticMirrorRef.transform.TransformDirection(mirrorUp))));
 
         // Test
-        //if (real.name == "Sphere")
+        //if (real.name == "Sport (1)")
         //{
-        //    print("forward: " + transform.TransformPoint(mirrorForward) + ", up: " + transform.TransformPoint(mirrorUp) + ", calculated local up: " + reflected.InverseTransformPoint(transform.TransformPoint(mirrorUp)) + ", real local up: " + reflected.InverseTransformPoint(reflected.up));
+        //    //print("real copy up: " + staticMirrorRef.transform.InverseTransformPoint(real.TransformPoint(Vector3.up)) + ", real copy forward: " + staticMirrorRef.transform.InverseTransformPoint(real.TransformPoint(Vector3.forward)));
+        //    print("forward: " + staticMirrorRef.transform.TransformPoint(mirrorForward) + ", up: " + staticMirrorRef.transform.TransformPoint(mirrorUp) + ", calculated local up: " + reflected.InverseTransformPoint(staticMirrorRef.transform.TransformPoint(mirrorUp)) + ", real local up: " + reflected.InverseTransformPoint(reflected.up));
         //}
     }
 }
