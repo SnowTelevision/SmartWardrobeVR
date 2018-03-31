@@ -15,7 +15,15 @@ public class RealWorldObject : MonoBehaviour
         // If this object is not a virtual menu item
         if (gameObject.layer != LayerMask.NameToLayer("MenuItem"))
         {
-            gameObject.layer = LayerMask.NameToLayer("RealWorld"); // Change the layer of this object to "RealWorld"
+            // Change the layer of the mirror object
+            foreach (Transform t in GetComponentsInChildren<Transform>())
+            {
+                if (t.name != "GazeDetector")
+                {
+                    t.gameObject.layer = LayerMask.NameToLayer("RealWorld");
+                }
+            }
+            //gameObject.layer = LayerMask.NameToLayer("RealWorld"); // Change the layer of this object to "RealWorld"
         }
 
         // If the object is a light source, then make it not shine on mirror objects
@@ -37,7 +45,7 @@ public class RealWorldObject : MonoBehaviour
         // If the object is on the mirror's reflective side but doesn't have a copy in the mirror world
         if (mirrorCopy == null && ShouldHaveReflection())
         {
-            Mirror.staticMirrorRef.InstantiateMirrorWorldObject(replacingMirrorObject);
+            Mirror.staticMirrorRef.InstantiateMirrorWorldObject(gameObject, replacingMirrorObject);
         }
 
         // If the object is on the mirror's non-reflective side but has a copy in the mirror world

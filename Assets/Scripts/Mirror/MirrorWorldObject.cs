@@ -30,7 +30,6 @@ public class MirrorWorldObject : MonoBehaviour
         }
 
         // Change the layer of the mirror object
-
         foreach (Transform t in GetComponentsInChildren<Transform>())
         {
             t.gameObject.layer = LayerMask.NameToLayer("MirrorWorld");

@@ -56,9 +56,10 @@ public class Mirror : MonoBehaviour
     /// Instantiates the copy of a real world object when the real object is just instantiated or move to the mirror's reflective side
     /// </summary>
     /// <param name="realObject"></param>
-    public void InstantiateMirrorWorldObject(GameObject realObject)
+    /// <param name="newMirrorObjectPrefab"></param>
+    public void InstantiateMirrorWorldObject(GameObject realObject, GameObject newMirrorObjectPrefab)
     {
-        GameObject newMirrorObject = Instantiate(realObject); // Instantiate the mirror copy for the real object
+        GameObject newMirrorObject = Instantiate(newMirrorObjectPrefab); // Instantiate the mirror copy for the real object
 
         // Change the RealWorldObject component to MirrorWorldObject
         Destroy(newMirrorObject.GetComponent<RealWorldObject>());
