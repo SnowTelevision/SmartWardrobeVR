@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class TriggerDetectControllerEnter : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class TriggerDetectControllerEnter : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // If it is a controller
-        if (other.transform.parent.name == "[VRTK][AUTOGEN][Controller][CollidersContainer]")
+        if (other.transform.parent.name == "[VRTK][AUTOGEN][Controller][CollidersContainer]" &&
+            ControllerEventsListener.triggerClickedDown)
         {
             lastExitedController = other.transform.parent.gameObject;
             lastControllerExitTime = Time.time;

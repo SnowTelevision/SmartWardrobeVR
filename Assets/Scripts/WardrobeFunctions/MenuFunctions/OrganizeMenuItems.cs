@@ -16,6 +16,8 @@ public class OrganizeMenuItems : MonoBehaviour
     public float turningSpeedRatio; // How fast each menu item should turn according to the entire menu
     public float menuDistance; // The distance from the center of the menu to the menu items (it will be the radius of the menu if the menu is a circle)
     public List<GameObject> menuItems; // The items currently in the menu
+    public float menuChangeAnimationDuration; // How long is the animation for changing between different menus
+    public bool playExpandAnimation; // Should this menu play the expand animation when it is just opened
 
     public Vector3 menuLastLocalEuler; // The eulerangles of the menu on the last frame
     public Vector3 followPositionOffset; // The offset of the position it should follow
@@ -23,7 +25,10 @@ public class OrganizeMenuItems : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ArrangeMenuItems();
+        if (playExpandAnimation)
+        {
+            StartCoroutine(ExpandMenuItems());
+        }
     }
 
     // Update is called once per frame
@@ -66,13 +71,60 @@ public class OrganizeMenuItems : MonoBehaviour
     }
 
     /// <summary>
-    /// Arrange the position of menu items in the menu
+    /// Animation that expands menu items when a menu is just opened
     /// </summary>
-    public void ArrangeMenuItems()
+    public IEnumerator ExpandMenuItems()
     {
+        List<Vector3> initialLocalPositions = new List<Vector3>();
+        List<Vector3> targetLocalPositions = new List<Vector3>();
+
         for (int i = 0; i < menuItems.Count; i++)
         {
-            menuItems[i].transform.localPosition = CalculateRelativePosition(i);
+            initialLocalPositions.Add(menuItems[i].transform.localPosition);
+            targetLocalPositions.Add(CalculateRelativePosition(i));
+        }
+
+        for (float t = 0; t < 1; t += Time.deltaTime / menuChangeAnimationDuration)
+        {
+            for (int i = 0; i < menuItems.Count; i++)
+            {
+                menuItems[i].transform.localPosition = Vector3.Lerp(initialLocalPositions[i], targetLocalPositions[i], t);
+            }
+
+            yield return null;
+        }
+
+        for (int i = 0; i < menuItems.Count; i++)
+        {
+            menuItems[i].transform.localPosition = targetLocalPositions[i];
+        }
+    }
+
+    /// <summary>
+    /// Animation that retracts menu items when a menu is just closed
+    /// </summary>
+    public IEnumerator RetractMenuItems()
+    {
+        List<Vector3> initialLocalPositions = new List<Vector3>();
+
+        for (int i = 0; i < menuItems.Count; i++)
+        {
+            initialLocalPositions.Add(menuItems[i].transform.localPosition);
+        }
+
+        for (float t = 0; t < 1; t += Time.deltaTime / menuChangeAnimationDuration)
+        {
+            for (int i = 0; i < menuItems.Count; i++)
+            {
+                menuItems[i].transform.localPosition = Vector3.Lerp(initialLocalPositions[i], Vector3.zero, t);
+            }
+
+            yield return null;
+        }
+
+        for (int i = 0; i < menuItems.Count; i++)
+        {
+            menuItems[i].transform.localPosition = Vector3.zero;
         }
     }
 

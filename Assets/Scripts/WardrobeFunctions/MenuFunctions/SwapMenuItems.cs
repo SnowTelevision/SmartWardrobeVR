@@ -7,6 +7,10 @@ public class SwapMenuItems : MonoBehaviour
     public TriggerDetectControllerEnter leftTrigger;
     public TriggerDetectControllerEnter rightTrigger;
 
+    // Test
+    public Vector3 objectToFollowInverseTransformPointtransformposition;
+    public Vector3 transformInverseTransformPointGetComponentOrganizeMenuItemsobjectToFollowtransformposition;
+
     // Use this for initialization
     void Start()
     {
@@ -17,6 +21,11 @@ public class SwapMenuItems : MonoBehaviour
     void Update()
     {
         DetectIfSwap();
+
+        // Test
+        objectToFollowInverseTransformPointtransformposition = GetComponent<OrganizeMenuItems>().objectToFollow.InverseTransformPoint(transform.position);
+        transformInverseTransformPointGetComponentOrganizeMenuItemsobjectToFollowtransformposition = 
+            transform.InverseTransformPoint(GetComponent<OrganizeMenuItems>().objectToFollow.transform.position);
     }
 
     /// <summary>
@@ -60,8 +69,8 @@ public class SwapMenuItems : MonoBehaviour
         if (moveLeft)
         {
             // If the menu is already at far right
-            if (Mathf.Abs(GetComponent<OrganizeMenuItems>().objectToFollow.InverseTransformPoint(transform.position).x -
-                          (-(GetComponent<OrganizeMenuItems>().menuItems.Count - 1) *
+            if (Mathf.Abs(transform.InverseTransformPoint(GetComponent<OrganizeMenuItems>().objectToFollow.transform.position).x -
+                          ((GetComponent<OrganizeMenuItems>().menuItems.Count - 1) *
                            GetComponent<OrganizeMenuItems>().menuItemSpacing)) <= 0.1f)
             {
                 return;
@@ -78,7 +87,7 @@ public class SwapMenuItems : MonoBehaviour
         else
         {
             // If the menu is already at far left
-            if (Mathf.Abs(GetComponent<OrganizeMenuItems>().objectToFollow.InverseTransformPoint(transform.position).x) <= 0.1f)
+            if (Mathf.Abs(transform.InverseTransformPoint(GetComponent<OrganizeMenuItems>().objectToFollow.transform.position).x) <= 0.1f)
             {
                 return;
             }

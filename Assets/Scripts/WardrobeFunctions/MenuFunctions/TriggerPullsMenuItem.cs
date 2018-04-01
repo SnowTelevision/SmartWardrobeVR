@@ -21,6 +21,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
     public GameObject firstLevelMenuWrap; // The gameobject that contains the first level menu, hide it when switch to second level menu
     public GameObject secondLevelMenuWrap; // The gameobject that contains the second level menu
     public Vector3 secondLevelMenuRelativePosition; // Where the second level menu should appear according to the user
+    public bool isSecondLevel; // Is this second level menu
 
     public Transform userHead; // The transform of user's head
     public GameObject pullCenter; // Everytime the user starts pulling, a new center will be created at the position of the player, facing the menu item, and its up pointing up
@@ -28,6 +29,8 @@ public class TriggerPullsMenuItem : MonoBehaviour
     public Vector3 startRelativePosition; // The menu items relative position to the center when the pull started
     public Transform pullingController; // The transform of the controller that is currently pulling it
     public bool inEndPullAnimation; // If the end pull animation is played
+    public bool retractMenuItemWhenStartPull; // If play the retract menu item animation when start pull
+    public bool expandMenuItemWhenEndPull; // If play the expand menu item animation when end pull
 
     // Use this for initialization
     void Start()
@@ -164,7 +167,15 @@ public class TriggerPullsMenuItem : MonoBehaviour
             Destroy(pullCenter);
 
             // Show second level menu
-            SwitchToSecondLevel();
+            if (!isSecondLevel)
+            {
+                SwitchToSecondLevel();
+            }
+            // Show first level menu
+            else
+            {
+                SwitchToFirstLevel();
+            }
         }
         else
         {
@@ -189,9 +200,29 @@ public class TriggerPullsMenuItem : MonoBehaviour
         //secondLevelMenuWrap.transform.eulerAngles = new Vector3(0, userHead.eulerAngles.y, 0);
         secondLevelMenuWrap.SetActive(true);
         secondLevelMenuWrap.GetComponent<OrganizeMenuItems>().followPositionOffset = secondLevelMenuWrap.transform.position - userHead.position;
-        secondLevelMenuWrap.GetComponent<OrganizeMenuItems>().ArrangeMenuItems();
+        StartCoroutine(secondLevelMenuWrap.GetComponent<OrganizeMenuItems>().ExpandMenuItems());
 
         firstLevelMenuWrap.SetActive(false);
+        
+        // Enable the menu item animations when start or end pull second level
+        secondLevelMenuWrap.GetComponent<TriggerPullsMenuItem>().expandMenuItemWhenEndPull = true;
+        secondLevelMenuWrap.GetComponent<TriggerPullsMenuItem>().retractMenuItemWhenStartPull = true;
+        
+    }
+
+    /// <summary>
+    /// Hide the first level menu then how first level menu
+    /// </summary>
+    public void SwitchToFirstLevel()
+    {
+        secondLevelMenuWrap.SetActive(false);
+        firstLevelMenuWrap.SetActive(false);
+
+        if (isSecondLevel)
+        {
+            expandMenuItemWhenEndPull = false;
+            retractMenuItemWhenStartPull = false;
+        }
     }
 
     /// <summary>
@@ -221,7 +252,11 @@ public class TriggerPullsMenuItem : MonoBehaviour
     /// </summary>
     public void CheckIfPulledToConfirm()
     {
-        if ((transform.position - userHead.position).magnitude <= confirmDist)
+        if (!isSecondLevel && (transform.position - userHead.position).magnitude <= confirmDist)
+        {
+            EndPull(true);
+        }
+        else if (isSecondLevel && (transform.position - userHead.position).magnitude >= confirmDist)
         {
             EndPull(true);
         }
