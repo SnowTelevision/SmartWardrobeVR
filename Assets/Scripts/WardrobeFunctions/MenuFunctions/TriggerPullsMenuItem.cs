@@ -75,7 +75,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
                     {
                         GetComponent<SwapMenuItems>().MoveMenu(false);
                     }
-
+                     
                     ControllerTriggerDownGestureListener.sControllerTriggerDownGestureListener.GestureStop();
                 }
             }

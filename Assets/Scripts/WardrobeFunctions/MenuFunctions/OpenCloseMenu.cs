@@ -13,6 +13,7 @@ public class OpenCloseMenu : MonoBehaviour
     public float menuDropHeight; // How far should the menu drops down
     public float menuItemAnimationDuration; // How fast should each menu item drop down or raise up
     public Transform menuAppearPositionReference; // The transform that the appearing position of the menu that is relative to
+    public Transform gestureRelativeReference; // What is the gesture relative to
 
     public bool menuOpened; // Is the menu opened
     public bool isMakingGesture; // If the user is making a gesture
@@ -33,26 +34,27 @@ public class OpenCloseMenu : MonoBehaviour
                 if (ControllerEventsListener.triggerClicked)
                 {
                     isMakingGesture = true;
-                    ControllerTriggerDownGestureListener.sControllerTriggerDownGestureListener.GestureStart(null, ControllerEventsListener.latestEventSender.transform);
+                    ControllerTriggerDownGestureListener.sControllerTriggerDownGestureListener.GestureStart(gestureRelativeReference, ControllerEventsListener.latestEventSender.transform);
                 }
             }
-            else
+        }
+
+        if (isMakingGesture)
+        {
+            if (ControllerEventsListener.triggerUnclicked)
             {
-                if (ControllerEventsListener.triggerUnclicked)
+                isMakingGesture = false;
+
+                if (firstLevelMenuWrap.activeInHierarchy && ControllerTriggerDownGestureListener.lastGesture == "up")
                 {
-                    isMakingGesture = false;
-
-                    if (firstLevelMenuWrap.activeInHierarchy && ControllerTriggerDownGestureListener.lastGesture == "up")
-                    {
-                        StartCoroutine(CloseMenuAnimation());
-                    }
-                    else if (!firstLevelMenuWrap.activeInHierarchy && !menuOpened && ControllerTriggerDownGestureListener.lastGesture == "down")
-                    {
-                        StartCoroutine(OpenMenuAnimation());
-                    }
-
-                    ControllerTriggerDownGestureListener.sControllerTriggerDownGestureListener.GestureStop();
+                    StartCoroutine(CloseMenuAnimation());
                 }
+                else if (!firstLevelMenuWrap.activeInHierarchy && !menuOpened && ControllerTriggerDownGestureListener.lastGesture == "down")
+                {
+                    StartCoroutine(OpenMenuAnimation());
+                }
+
+                ControllerTriggerDownGestureListener.sControllerTriggerDownGestureListener.GestureStop();
             }
         }
     }

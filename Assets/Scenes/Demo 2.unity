@@ -2786,10 +2786,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstLevelMenuWrap: {fileID: 1956956036}
   firstLevelMenuWheel: {fileID: 2119349044}
-  menuRelativeAppearPosition: {x: 0, y: -0.39, z: 0.3}
+  menuRelativeAppearPosition: {x: 0, y: -0.2, z: 2.5}
   menuDropHeight: 2
   menuItemAnimationDuration: 0.2
-  menuAppearPositionReference: {fileID: 2073147149}
+  menuAppearPositionReference: {fileID: 922349702}
+  gestureRelativeReference: {fileID: 228454210}
   menuOpened: 0
   isMakingGesture: 0
 --- !u!4 &922349702 stripped
@@ -6076,7 +6077,7 @@ MonoBehaviour:
     gestureDirection: -1
     gestureName: left
     validated: 0
-  - refUser: 1
+  - refUser: 0
     referenceTransform: {fileID: 0}
     validDistance: 0.3
     alongX: 0
@@ -6085,7 +6086,7 @@ MonoBehaviour:
     gestureDirection: 1
     gestureName: up
     validated: 0
-  - refUser: 1
+  - refUser: 0
     referenceTransform: {fileID: 0}
     validDistance: 0.3
     alongX: 0
@@ -6134,6 +6135,7 @@ MonoBehaviour:
   currentGestureLength: 0
   currentGestureVector: {x: 0, y: 0, z: 0}
   testLine: {fileID: 0}
+  testLastGesture: 
 --- !u!1 &1841886996
 GameObject:
   m_ObjectHideFlags: 0

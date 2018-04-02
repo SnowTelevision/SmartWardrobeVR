@@ -31,6 +31,7 @@ public class ControllerTriggerDownGestureListener : MonoBehaviour
 
     // Test
     public Transform testLine;
+    public string testLastGesture;
 
     // Use this for initialization
     void Start()
@@ -46,6 +47,8 @@ public class ControllerTriggerDownGestureListener : MonoBehaviour
         {
             OnMakingGesture();
         }
+
+        testLastGesture = lastGesture;
     }
 
     /// <summary>

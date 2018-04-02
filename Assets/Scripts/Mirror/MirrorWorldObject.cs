@@ -33,6 +33,11 @@ public class MirrorWorldObject : MonoBehaviour
         foreach (Transform t in GetComponentsInChildren<Transform>())
         {
             t.gameObject.layer = LayerMask.NameToLayer("MirrorWorld");
+
+            if (t.GetComponent<CheckIfGazed>())
+            {
+                Destroy(t.GetComponent<CheckIfGazed>());
+            }
         }
 
         // Change the shaders in the mirror object so the mirror object only appears in the mirror
