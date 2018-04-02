@@ -20,7 +20,7 @@ public class SwapMenuItems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DetectIfSwap();
+        //DetectIfSwap();
 
         // Test
         objectToFollowInverseTransformPointtransformposition = GetComponent<OrganizeMenuItems>().objectToFollow.InverseTransformPoint(transform.position);
@@ -28,27 +28,27 @@ public class SwapMenuItems : MonoBehaviour
             transform.InverseTransformPoint(GetComponent<OrganizeMenuItems>().objectToFollow.transform.position);
     }
 
-    /// <summary>
-    /// Detect if the user wave the controller from one trigger to the other
-    /// </summary>
-    public void DetectIfSwap()
-    {
-        // Controller move from right trigger to left trigger
-        if (leftTrigger.lastControllerEnterTime - rightTrigger.lastControllerExitTime > 0 &&
-            leftTrigger.lastControllerEnterTime - rightTrigger.lastControllerExitTime <= 0.25f &&
-            leftTrigger.lastEnteredController == rightTrigger.lastExitedController)
-        {
-            MoveMenu(true);
-        }
+    ///// <summary>
+    ///// Detect if the user wave the controller from one trigger to the other
+    ///// </summary>
+    //public void DetectIfSwap()
+    //{
+    //    // Controller move from right trigger to left trigger
+    //    if (leftTrigger.lastControllerEnterTime - rightTrigger.lastControllerExitTime > 0 &&
+    //        leftTrigger.lastControllerEnterTime - rightTrigger.lastControllerExitTime <= 0.25f &&
+    //        leftTrigger.lastEnteredController == rightTrigger.lastExitedController)
+    //    {
+    //        MoveMenu(true);
+    //    }
 
-        // Controller move from left trigger to right trigger
-        if (rightTrigger.lastControllerEnterTime - leftTrigger.lastControllerExitTime > 0 &&
-            rightTrigger.lastControllerEnterTime - leftTrigger.lastControllerExitTime <= 0.25f &&
-            rightTrigger.lastEnteredController == leftTrigger.lastExitedController)
-        {
-            MoveMenu(false);
-        }
-    }
+    //    // Controller move from left trigger to right trigger
+    //    if (rightTrigger.lastControllerEnterTime - leftTrigger.lastControllerExitTime > 0 &&
+    //        rightTrigger.lastControllerEnterTime - leftTrigger.lastControllerExitTime <= 0.25f &&
+    //        rightTrigger.lastEnteredController == leftTrigger.lastExitedController)
+    //    {
+    //        MoveMenu(false);
+    //    }
+    //}
 
     /// <summary>
     /// Move the menu
@@ -71,7 +71,7 @@ public class SwapMenuItems : MonoBehaviour
             // If the menu is already at far right
             if (Mathf.Abs(transform.InverseTransformPoint(GetComponent<OrganizeMenuItems>().objectToFollow.transform.position).x -
                           ((GetComponent<OrganizeMenuItems>().menuItems.Count - 1) *
-                           GetComponent<OrganizeMenuItems>().menuItemSpacing)) <= 0.1f)
+                           GetComponent<OrganizeMenuItems>().menuItemSpacing)) <= GetComponent<OrganizeMenuItems>().menuItemSpacing * 0.2f)
             {
                 return;
             }
@@ -87,7 +87,8 @@ public class SwapMenuItems : MonoBehaviour
         else
         {
             // If the menu is already at far left
-            if (Mathf.Abs(transform.InverseTransformPoint(GetComponent<OrganizeMenuItems>().objectToFollow.transform.position).x) <= 0.1f)
+            if (Mathf.Abs(transform.InverseTransformPoint(GetComponent<OrganizeMenuItems>().objectToFollow.transform.position).x) <= 
+                GetComponent<OrganizeMenuItems>().menuItemSpacing * 0.2f)
             {
                 return;
             }

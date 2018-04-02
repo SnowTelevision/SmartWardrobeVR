@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: AlwaysShowUI
+  m_Name: AlwaysShowUI_ValidGesture
   m_Shader: {fileID: 4800000, guid: 137ee3d66e5f53343bbfb719bcc5888b, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -78,5 +78,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6544118, g: 0.94279915, b: 1, a: 0.441}
+    - _Color: {r: 0.6544118, g: 1, b: 0.6996957, a: 0.441}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

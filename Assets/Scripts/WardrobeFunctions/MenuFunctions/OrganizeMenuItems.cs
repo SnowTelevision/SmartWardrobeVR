@@ -23,11 +23,20 @@ public class OrganizeMenuItems : MonoBehaviour
     public Vector3 followPositionOffset; // The offset of the position it should follow
 
     // Use this for initialization
-    void Start()
+    void OnEnable()
     {
         if (playExpandAnimation)
         {
             StartCoroutine(ExpandMenuItems());
+        }
+
+        // If this is first level menu
+        if (isCircle)
+        {
+            for (int i = 0; i < menuItems.Count; i++)
+            {
+                menuItems[i].transform.localPosition = CalculateRelativePosition(i);
+            }
         }
     }
 
