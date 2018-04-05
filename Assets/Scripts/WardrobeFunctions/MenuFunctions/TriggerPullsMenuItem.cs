@@ -22,6 +22,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
     public GameObject secondLevelMenuWrap; // The gameobject that contains the second level menu
     public Vector3 secondLevelMenuRelativePosition; // Where the second level menu should appear according to the user
     public bool isSecondLevel; // Is this second level menu
+    public GameObject secondLevelMenuWheel; // The rotating wheel for second level menu
 
     public Transform userHead; // The transform of user's head
     //public GameObject pullCenter; // Everytime the user starts pulling, a new center will be created at the position of the player, facing the menu item, and its up pointing up
@@ -259,6 +260,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
         //secondLevelMenuWrap.transform.eulerAngles = new Vector3(0, secondLevelMenuWrap.transform.eulerAngles.y, 0);
         //secondLevelMenuWrap.transform.eulerAngles = new Vector3(0, userHead.eulerAngles.y, 0);
         secondLevelMenuWrap.SetActive(true);
+        secondLevelMenuWheel.SetActive(true);
 
         for (float t = 0; t < 1; t += Time.deltaTime / GetComponentInParent<OrganizeMenuItems>().menuChangeAnimationDuration)
         {
@@ -313,6 +315,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
         yield return null;
 
         secondLevelMenuWrap.SetActive(false);
+        secondLevelMenuWheel.SetActive(false);
     }
 
 

@@ -18,6 +18,7 @@ public class OrganizeMenuItems : MonoBehaviour
     public List<GameObject> menuItems; // The items currently in the menu
     public float menuChangeAnimationDuration; // How long is the animation for changing between different menus
     public bool playExpandAnimation; // Should this menu play the expand animation when it is just opened
+    public float itemTurningBackSpeed; // How fast an item turn back to its original rotation if it is not in front of the user
 
     public Vector3 menuLastLocalEuler; // The eulerangles of the menu on the last frame
     public Vector3 followPositionOffset; // The offset of the position it should follow
@@ -62,6 +63,31 @@ public class OrganizeMenuItems : MonoBehaviour
         {
             RotateMenuItems();
             menuLastLocalEuler = transform.localEulerAngles;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!rotateMenuItems)
+        {
+            RotateMenuItemsToOriginal();
+        }
+    }
+
+    public void RotateMenuItemsToOriginal()
+    {
+        for (int i = 0; i < menuItems.Count; i++)
+        {
+            if (menuItems[i] != GetComponent<TryOnCloth>().currentFacingCloth &&
+                Mathf.Abs(menuItems[i].transform.localEulerAngles.y) >= 1)
+            {
+                menuItems[i].transform.localEulerAngles =
+                    new Vector3(menuItems[i].transform.localEulerAngles.x,
+                                Mathf.Repeat(menuItems[i].transform.localEulerAngles.y - Mathf.Sign(
+                                        180 - Mathf.Repeat(menuItems[i].transform.localEulerAngles.y, 360)) *
+                                    Time.fixedDeltaTime * itemTurningBackSpeed, 360),
+                                menuItems[i].transform.localEulerAngles.z);
+            }
         }
     }
 

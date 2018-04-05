@@ -83,6 +83,10 @@ public class SwapMenuItems : MonoBehaviour
             rightTrigger.transform.localPosition =
                 new Vector3(rightTrigger.transform.localPosition.x + GetComponent<OrganizeMenuItems>().menuItemSpacing,
                             rightTrigger.transform.localPosition.y, rightTrigger.transform.localPosition.z);
+
+            GetComponent<TryOnCloth>().currentFacingCloth =
+                GetComponent<OrganizeMenuItems>().menuItems[GetComponent<OrganizeMenuItems>().menuItems.
+                    IndexOf(GetComponent<TryOnCloth>().currentFacingCloth) + 1];
         }
         else
         {
@@ -100,6 +104,10 @@ public class SwapMenuItems : MonoBehaviour
             rightTrigger.transform.localPosition =
                 new Vector3(rightTrigger.transform.localPosition.x - GetComponent<OrganizeMenuItems>().menuItemSpacing,
                             rightTrigger.transform.localPosition.y, rightTrigger.transform.localPosition.z);
+
+            GetComponent<TryOnCloth>().currentFacingCloth =
+                GetComponent<OrganizeMenuItems>().menuItems[GetComponent<OrganizeMenuItems>().menuItems.
+                    IndexOf(GetComponent<TryOnCloth>().currentFacingCloth) - 1];
         }
     }
 }

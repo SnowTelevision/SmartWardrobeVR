@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000088, guid: 3fae0a4d9fcc4284bbc5f2fed1ae84a9,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -113,6 +114,116 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &13799777
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 228454210}
+    m_Modifications:
+    - target: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114611409313721144, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: touchHighlightColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114512318228719944, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114611409313721144, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: touchHighlightColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114611409313721144, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: touchHighlightColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114611409313721144, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: touchHighlightColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212236767265449726, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212236767265449726, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212236767265449726, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212236767265449726, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023900391673830, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_Name
+      value: SecondLevelMenuWheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023900391673830, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 59868013950503926, guid: b486ea5de587a75409238df9c32c8d65,
+        type: 2}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 228454215}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b486ea5de587a75409238df9c32c8d65, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &13799778 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4556242507665778, guid: b486ea5de587a75409238df9c32c8d65,
+    type: 2}
+  m_PrefabInternal: {fileID: 13799777}
+--- !u!1 &13799779 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1023900391673830, guid: b486ea5de587a75409238df9c32c8d65,
+    type: 2}
+  m_PrefabInternal: {fileID: 13799777}
 --- !u!1 &15552735 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: f7ad158b421334a3393f8cfae3919734, type: 3}
@@ -827,6 +938,7 @@ MonoBehaviour:
   secondLevelMenuWrap: {fileID: 0}
   secondLevelMenuRelativePosition: {x: 0, y: 0, z: 0}
   isSecondLevel: 0
+  secondLevelMenuWheel: {fileID: 0}
   userHead: {fileID: 0}
   isPulling: 0
   startRelativePosition: {x: 0, y: 0, z: 0}
@@ -927,6 +1039,7 @@ GameObject:
   - component: {fileID: 228454213}
   - component: {fileID: 228454212}
   - component: {fileID: 228454211}
+  - component: {fileID: 228454215}
   m_Layer: 0
   m_Name: RealBody
   m_TagString: Untagged
@@ -945,6 +1058,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1213890185}
+  - {fileID: 13799778}
   m_Father: {fileID: 0}
   m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1011,6 +1125,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.23, y: 0.36, z: 0.16}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &228454215
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 228454209}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &247167536 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1455236156203600, guid: 43354f0c7b115af4898a5dc29dfe0dae,
@@ -3091,7 +3220,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -3378,6 +3507,7 @@ MonoBehaviour:
   - {fileID: 1709649696}
   menuChangeAnimationDuration: 0.5
   playExpandAnimation: 0
+  itemTurningBackSpeed: 0
   menuLastLocalEuler: {x: 0, y: 0, z: 0}
   followPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1034330196
@@ -5169,6 +5299,7 @@ GameObject:
   - component: {fileID: 1558157423}
   - component: {fileID: 1558157422}
   - component: {fileID: 1558157424}
+  - component: {fileID: 1558157425}
   m_Layer: 0
   m_Name: SecondMenuWrapSport
   m_TagString: Untagged
@@ -5235,6 +5366,7 @@ MonoBehaviour:
   - {fileID: 105334690}
   menuChangeAnimationDuration: 0.5
   playExpandAnimation: 1
+  itemTurningBackSpeed: 30
   menuLastLocalEuler: {x: 0, y: 0, z: 0}
   followPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &1558157424
@@ -5254,6 +5386,7 @@ MonoBehaviour:
   secondLevelMenuWrap: {fileID: 1558157420}
   secondLevelMenuRelativePosition: {x: 0, y: 0.3, z: 1}
   isSecondLevel: 1
+  secondLevelMenuWheel: {fileID: 13799779}
   userHead: {fileID: 0}
   isPulling: 0
   startRelativePosition: {x: 0, y: 0, z: 0}
@@ -5262,6 +5395,23 @@ MonoBehaviour:
   retractMenuItemWhenStartPull: 0
   expandMenuItemWhenEndPull: 0
   secondMenuGoBackPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1558157425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1558157420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2866f2908f88339449fd31320d983576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondMenuWheel: {fileID: 13799778}
+  secondMenuWheelRelativePosition: {x: 0, y: 0, z: 0.2}
+  currentFacingCloth: {fileID: 993387651}
+  currentTryOnCloth: {fileID: 0}
+  currentTryOnClothOnMenu: {fileID: 0}
+  secondMenuWheelLastEuler: {x: 0, y: 0, z: 0}
 --- !u!1001 &1568442781
 Prefab:
   m_ObjectHideFlags: 0
@@ -5813,6 +5963,7 @@ MonoBehaviour:
   secondLevelMenuWrap: {fileID: 0}
   secondLevelMenuRelativePosition: {x: 0, y: 0, z: 0}
   isSecondLevel: 0
+  secondLevelMenuWheel: {fileID: 0}
   userHead: {fileID: 0}
   isPulling: 0
   startRelativePosition: {x: 0, y: 0, z: 0}
@@ -6376,6 +6527,7 @@ MonoBehaviour:
   secondLevelMenuWrap: {fileID: 1558157420}
   secondLevelMenuRelativePosition: {x: 0, y: 0.3, z: 1}
   isSecondLevel: 0
+  secondLevelMenuWheel: {fileID: 13799779}
   userHead: {fileID: 0}
   isPulling: 0
   startRelativePosition: {x: 0, y: 0, z: 0}
