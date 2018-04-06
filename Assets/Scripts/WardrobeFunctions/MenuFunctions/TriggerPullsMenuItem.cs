@@ -294,9 +294,12 @@ public class TriggerPullsMenuItem : MonoBehaviour
         StartCoroutine(GetComponent<OrganizeMenuItems>().RetractMenuItems());
 
         Vector3 secondLevelMenuStartGoBackPosition = transform.position;
+        Vector3 currentFacingSecondMenuItemStartEuler = GetComponent<TryOnCloth>().currentFacingCloth.transform.localEulerAngles;
         for (float t = 0; t < 1; t += Time.deltaTime / GetComponent<OrganizeMenuItems>().menuChangeAnimationDuration)
         {
             transform.position = Vector3.Lerp(secondLevelMenuStartGoBackPosition, secondMenuGoBackPosition, t);
+            GetComponent<TryOnCloth>().currentFacingCloth.transform.localEulerAngles =
+                Vector3.Lerp(currentFacingSecondMenuItemStartEuler, Vector3.zero, t);
             yield return null;
         }
 

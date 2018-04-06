@@ -25,9 +25,24 @@ public class RealBodyWearCloth : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // If it is a cloth, and the cloth is released, and is not "weared" on the body yet
-        if (other.GetComponent<ClothInfo>() && !other.GetComponent<VRTK_InteractableObject>().IsGrabbed() && !clothes.Contains(other.GetComponent<ClothInfo>()))
+        if (other.GetComponent<ClothInfo>())
         {
-            WearCloth(other.GetComponent<ClothInfo>());
+            other.GetComponent<ClothInfo>().isTouchingUserBody = true;
+            ClothInfo collidingClothInfo = other.GetComponent<ClothInfo>();
+
+            if (!other.GetComponent<VRTK_InteractableObject>().IsGrabbed())
+            {
+                if (collidingClothInfo.isRealCloth && clothes.Contains(collidingClothInfo))
+                {
+                    return;
+                }
+                else if (!collidingClothInfo.isRealCloth && currentVirtualCloth == collidingClothInfo)
+                {
+                    return;
+                }
+
+                WearCloth(other.GetComponent<ClothInfo>());
+            }
         }
     }
 
@@ -51,7 +66,8 @@ public class RealBodyWearCloth : MonoBehaviour
         {
             if (currentVirtualCloth != null)
             {
-                Destroy(currentVirtualCloth);
+                currentVirtualCloth.GetComponent<Collider>().enabled = false;
+                currentVirtualCloth.GetComponent<ClothInfo>().ReturnToMenuWrap();
             }
 
             currentVirtualCloth = newCloth;
@@ -61,7 +77,8 @@ public class RealBodyWearCloth : MonoBehaviour
             newCloth.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             newCloth.isWeared = true;
             newCloth.GetComponent<MeshRenderer>().enabled = false;
-            newCloth.GetComponent<Collider>().enabled = false;
+            newCloth.transform.localScale = newCloth.originalScale;
+            //newCloth.GetComponent<Collider>().enabled = false;
         }
 
         if (!newCloth.freelyWear)
@@ -74,9 +91,15 @@ public class RealBodyWearCloth : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // If it is a cloth, and is "weared" on the body yet
-        if (other.GetComponent<ClothInfo>() && clothes.Contains(other.GetComponent<ClothInfo>()))
+        if (other.GetComponent<ClothInfo>())
         {
-            TakeOffCloth(other.GetComponent<ClothInfo>());
+            other.GetComponent<ClothInfo>().isTouchingUserBody = false;
+
+            if (clothes.Contains(other.GetComponent<ClothInfo>()) || 
+                currentVirtualCloth == other.GetComponent<ClothInfo>())
+            {
+                TakeOffCloth(other.GetComponent<ClothInfo>());
+            }
         }
     }
 
@@ -87,9 +110,19 @@ public class RealBodyWearCloth : MonoBehaviour
     public void TakeOffCloth(ClothInfo thisCloth)
     {
         clothes.Remove(thisCloth);
-        thisCloth.transform.parent = null;
-        thisCloth.GetComponent<Rigidbody>().useGravity = true;
-        thisCloth.GetComponent<Rigidbody>().isKinematic = false;
         thisCloth.isWeared = false;
+
+        if (thisCloth.isRealCloth)
+        {
+            thisCloth.transform.parent = null;
+            thisCloth.GetComponent<Rigidbody>().useGravity = true;
+            thisCloth.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        else
+        {
+            thisCloth.GetComponent<MeshRenderer>().enabled = true;
+            thisCloth.transform.localScale = thisCloth.originalScale;
+            currentVirtualCloth = null;
+        }
     }
 }
