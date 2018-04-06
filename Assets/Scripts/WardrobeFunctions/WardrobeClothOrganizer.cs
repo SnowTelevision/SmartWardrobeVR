@@ -29,11 +29,11 @@ public class WardrobeClothOrganizer : MonoBehaviour
         {
             PutInCloth(other.GetComponent<ClothInfo>());
 
-            // If the wardrobe database currently doesn't have this cloth's info (the cloth is put in the wardrobe for the first time
-            if (!WardrobeDatabase.database.storedClothInfo.Contains(other.GetComponent<ClothInfo>()))
-            {
-                WardrobeDatabase.database.storedClothInfo.Add(other.GetComponent<ClothInfo>()); // Adds the cloth info in the database
-            }
+            //// If the wardrobe database currently doesn't have this cloth's info (the cloth is put in the wardrobe for the first time
+            //if (!WardrobeDatabase.database.storedClothInfo.Contains(other.GetComponent<ClothInfo>()))
+            //{
+            //    WardrobeDatabase.database.storedClothInfo.Add(other.GetComponent<ClothInfo>()); // Adds the cloth info in the database
+            //}
         }
     }
 
