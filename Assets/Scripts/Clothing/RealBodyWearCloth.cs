@@ -9,6 +9,8 @@ public class RealBodyWearCloth : MonoBehaviour
 
     public List<ClothInfo> clothes; // The cloth(es) currently wearing
     public ClothInfo currentVirtualCloth; // The virtual cloth that is currently trying on in the mirror
+    public ClothInfo toBeWeared; // The cloth to be weared
+    public List<ClothInfo> collidingCloth; // The cloth that is colliding with the save trigger
 
     // Use this for initialization
     void Start()
@@ -19,8 +21,36 @@ public class RealBodyWearCloth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Keep the wearing cloth's original scale
+        currentVirtualCloth.transform.localScale = currentVirtualCloth.originalScale; 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Add each new cloth into the colliding list
+        if (other.GetComponent<ClothInfo>() && !collidingCloth.Contains(other.GetComponent<ClothInfo>()))
+        {
+            collidingCloth.Add(other.GetComponent<ClothInfo>());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // If it is a cloth, and is "weared" on the body
+        if (other.GetComponent<ClothInfo>())
+        {
+            collidingCloth.Remove(other.GetComponent<ClothInfo>());
+
+            other.GetComponent<ClothInfo>().isTouchingUserBody = false;
+
+            if (clothes.Contains(other.GetComponent<ClothInfo>()) ||
+                currentVirtualCloth == other.GetComponent<ClothInfo>())
+            {
+                TakeOffCloth(other.GetComponent<ClothInfo>());
+            }
+        }
+    }
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -29,6 +59,7 @@ public class RealBodyWearCloth : MonoBehaviour
         {
             other.GetComponent<ClothInfo>().isTouchingUserBody = true;
             ClothInfo collidingClothInfo = other.GetComponent<ClothInfo>();
+            //print("A, " + other.name);
 
             if (!other.GetComponent<VRTK_InteractableObject>().IsGrabbed())
             {
@@ -40,9 +71,37 @@ public class RealBodyWearCloth : MonoBehaviour
                 {
                     return;
                 }
+                //print("B, " + other.name);
 
+                if (!collidingClothInfo.isRealCloth)
+                {
+                    // Add cloth into history if it is not already in there
+                    if (collidingClothInfo.userListMenuItemObject != null &&
+                        !WardrobeDatabase.database.tryHistory.Exists(
+                        c => c.thisClothModel.name == collidingClothInfo.userListMenuItemObject.thisClothModel.name))
+                    {
+                        WardrobeDatabase.database.tryHistory.Add(collidingClothInfo.userListMenuItemObject);
+                    }
+                }
+
+                //print(other.GetComponent<ClothInfo>().name);
                 WearCloth(other.GetComponent<ClothInfo>());
+                //toBeWeared = other.GetComponent<ClothInfo>();
             }
+            //else
+            //{
+            //    //foreach (ClothInfo c in collidingCloth)
+            //    {
+            //        //print(toBeWeared.name + ", " + other.GetComponent<ClothInfo>().name);
+            //        // Wear the cloth if it is ungrabbed within the wear area
+            //        if (toBeWeared != null && toBeWeared.name == other.GetComponent<ClothInfo>().name)
+            //        {
+            //            WearCloth(other.GetComponent<ClothInfo>());
+            //            //print("wear cloth: " + other.name);
+            //            toBeWeared = null;
+            //        }
+            //    }
+            //}
         }
     }
 
@@ -67,7 +126,16 @@ public class RealBodyWearCloth : MonoBehaviour
             if (currentVirtualCloth != null)
             {
                 currentVirtualCloth.GetComponent<Collider>().enabled = false;
-                currentVirtualCloth.GetComponent<ClothInfo>().ReturnToMenuWrap();
+
+                // Only return the cloth if it is from the wardrobe menu and not from the hand history or saved menu
+                if (!currentVirtualCloth.GetComponent<DisposableClothInfo>())
+                {
+                    currentVirtualCloth.GetComponent<ClothInfo>().ReturnToMenuWrap();
+                }
+                else
+                {
+                    Destroy(currentVirtualCloth.gameObject);
+                }
             }
 
             currentVirtualCloth = newCloth;
@@ -76,6 +144,7 @@ public class RealBodyWearCloth : MonoBehaviour
             newCloth.GetComponent<Rigidbody>().velocity = Vector3.zero;
             newCloth.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             newCloth.isWeared = true;
+            //print(newCloth.name + " is weared");
             newCloth.GetComponent<MeshRenderer>().enabled = false;
             newCloth.transform.localScale = newCloth.originalScale;
             //newCloth.GetComponent<Collider>().enabled = false;
@@ -85,21 +154,6 @@ public class RealBodyWearCloth : MonoBehaviour
         {
             newCloth.transform.localPosition = newCloth.clothLocalPosition;
             newCloth.transform.localEulerAngles = newCloth.clothLocalEulerAngles;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        // If it is a cloth, and is "weared" on the body yet
-        if (other.GetComponent<ClothInfo>())
-        {
-            other.GetComponent<ClothInfo>().isTouchingUserBody = false;
-
-            if (clothes.Contains(other.GetComponent<ClothInfo>()) || 
-                currentVirtualCloth == other.GetComponent<ClothInfo>())
-            {
-                TakeOffCloth(other.GetComponent<ClothInfo>());
-            }
         }
     }
 

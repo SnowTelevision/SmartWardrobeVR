@@ -12,6 +12,7 @@ public class ClothInfo : VRTK_InteractableObject
     public string clothName; // Name of the cloth
     public Transform belongingItemWrap; // The "matching" second level menu item for this unreal cloth
     public TryOnCloth secondMenuWrapTryOn; // The TryOnCloth attached to its second level menu wrap
+    public InteractableClothInfo userListMenuItemObject; // The version of this object to be put into the saved or history menu
 
     public bool isWeared; // If the cloth is currently weared
     public bool isTouchingUserBody; // If the cloth is currently touching the user's body and will be weared if the user ungrab it
@@ -21,7 +22,7 @@ public class ClothInfo : VRTK_InteractableObject
     public Coroutine returningMenuCoroutine; // The animation that is returning menu
 
     // Use this for initialization
-    void Start()
+    public virtual void Start()
     {
         gameObject.AddComponent<RealWorldObject>();
         GetComponent<RealWorldObject>().alwaysMirror = false;
@@ -59,11 +60,16 @@ public class ClothInfo : VRTK_InteractableObject
         base.Update();
     }
 
+    public void BaseOnInteractableObjectGrabbed(InteractableObjectEventArgs e)
+    {
+        base.OnInteractableObjectGrabbed(e);
+    }
+
     public override void OnInteractableObjectGrabbed(InteractableObjectEventArgs e)
     {
         if (!isRealCloth)
         {
-            if (gameObject == secondMenuWrapTryOn.currentFacingCloth)
+            if (secondMenuWrapTryOn != null && gameObject == secondMenuWrapTryOn.currentFacingCloth)
             {
                 GetComponentInParent<TryOnCloth>().currentTryOnClothOnMenu = belongingItemWrap.gameObject;
                 GetComponentInParent<TryOnCloth>().currentTryOnCloth = gameObject;
@@ -73,9 +79,14 @@ public class ClothInfo : VRTK_InteractableObject
         base.OnInteractableObjectGrabbed(e);
     }
 
+    public void BaseOnInteractableObjectUngrabbed(InteractableObjectEventArgs e)
+    {
+        base.OnInteractableObjectUngrabbed(e);
+    }
+
     public override void OnInteractableObjectUngrabbed(InteractableObjectEventArgs e)
     {
-        if (!isTouchingUserBody)
+        if (!isRealCloth && !isTouchingUserBody)
         {
             ReturnToMenuWrap();
         }
@@ -83,11 +94,21 @@ public class ClothInfo : VRTK_InteractableObject
         base.OnInteractableObjectUngrabbed(e);
     }
 
+    public void BaseOnInteractableObjectTouched(InteractableObjectEventArgs e)
+    {
+        base.OnInteractableObjectTouched(e);
+    }
+
     public override void OnInteractableObjectTouched(InteractableObjectEventArgs e)
     {
         GetComponent<MeshRenderer>().enabled = true;
 
         base.OnInteractableObjectTouched(e);
+    }
+
+    public void BaseOnInteractableObjectUntouched(InteractableObjectEventArgs e)
+    {
+        base.OnInteractableObjectUntouched(e);
     }
 
     public override void OnInteractableObjectUntouched(InteractableObjectEventArgs e)
@@ -117,6 +138,7 @@ public class ClothInfo : VRTK_InteractableObject
     /// <returns></returns>
     public IEnumerator ReturnToMenuAnimation()
     {
+        GetComponent<Collider>().enabled = false;
         transform.localScale = originalScale;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -159,5 +181,6 @@ public class ClothInfo : VRTK_InteractableObject
         transform.localEulerAngles = Vector3.zero;
         GetComponent<Collider>().enabled = true;
         returningMenuCoroutine = null;
+        GetComponent<Collider>().enabled = true;
     }
 }

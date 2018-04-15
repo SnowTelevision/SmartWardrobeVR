@@ -94,6 +94,7 @@ public class Mirror : MonoBehaviour
         for (int i = 0; i < reflectionObjects.Count; i++)
         {
             CalculateReflectedTransform(objectsToReflect[i].transform, reflectionObjects[i].transform);
+            reflectionObjects[i].transform.localScale = objectsToReflect[i].transform.localScale;
         }
     }
 

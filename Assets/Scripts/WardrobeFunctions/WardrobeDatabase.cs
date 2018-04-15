@@ -9,8 +9,8 @@ public class WardrobeDatabase : MonoBehaviour
 
     public List<StoredClothInfo> storedClothInfo; // All the cloth that has their info stored in the wardrobe database
     public static WardrobeDatabase database; // The static reference of the database
-    public List<ClothInfo> tryHistory; // What are the clothes that the user have tried
-    public List<ClothInfo> choseCloth; // The clothes that the user selected to be highlighted in the wardrobe
+    public List<InteractableClothInfo> tryHistory; // What are the clothes that the user have tried
+    public List<InteractableClothInfo> choseCloth; // The clothes that the user selected to be highlighted in the wardrobe
 
     // Use this for initialization
     void Start()
