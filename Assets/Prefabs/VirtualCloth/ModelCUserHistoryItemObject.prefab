@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1804499626969868}
+  m_RootGameObject: {fileID: 1772865065732772}
   m_IsPrefabParent: 1
---- !u!1 &1804499626969868
+--- !u!1 &1772865065732772
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4047177685944270}
-  - component: {fileID: 33875186996462228}
-  - component: {fileID: 23752156237748830}
-  - component: {fileID: 65625969137683288}
-  - component: {fileID: 54303021603862882}
-  - component: {fileID: 114985333215283670}
+  - component: {fileID: 4994424279732782}
+  - component: {fileID: 33074902190356632}
+  - component: {fileID: 23920936814425536}
+  - component: {fileID: 114024235241779196}
+  - component: {fileID: 65784934486044880}
+  - component: {fileID: 54188524925513078}
   m_Layer: 13
-  m_Name: ModelCDisposable
+  m_Name: ModelCUserHistoryItemObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4047177685944270
+--- !u!4 &4994424279732782
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804499626969868}
+  m_GameObject: {fileID: 1772865065732772}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.63, y: 1, z: 0.15}
+  m_LocalPosition: {x: 0.09238796, y: 0, z: -0.03826834}
+  m_LocalScale: {x: 0.063, y: 0.1, z: 0.015}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23752156237748830
+--- !u!23 &23920936814425536
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804499626969868}
+  m_GameObject: {fileID: 1772865065732772}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -78,19 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33875186996462228
+--- !u!33 &33074902190356632
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804499626969868}
+  m_GameObject: {fileID: 1772865065732772}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54303021603862882
+--- !u!54 &54188524925513078
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804499626969868}
+  m_GameObject: {fileID: 1772865065732772}
   serializedVersion: 2
   m_Mass: 0.0000001
   m_Drag: 0
@@ -100,34 +100,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65625969137683288
+--- !u!65 &65784934486044880
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804499626969868}
+  m_GameObject: {fileID: 1772865065732772}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114985333215283670
+--- !u!114 &114024235241779196
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804499626969868}
+  m_GameObject: {fileID: 1772865065732772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329db6aa4503cdd49a95e8c98647b741, type: 3}
+  m_Script: {fileID: 11500000, guid: cc08b7cba6c131643a8c4eeb7b2fe2c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   disableWhenIdle: 1
   allowedNearTouchControllers: 0
   allowedTouchControllers: 0
   ignoredColliders: []
-  isGrabbable: 1
+  isGrabbable: 0
   holdButtonToGrab: 1
   stayGrabbedOnTeleport: 1
   validDrop: 1
@@ -152,14 +152,15 @@ MonoBehaviour:
   belongingItemWrap: {fileID: 0}
   secondMenuWrapTryOn: {fileID: 0}
   userHistoryMenuItemObject: {fileID: 0}
-  userSavedMenuItemObject: {fileID: 114024235241779196, guid: b9573d05672afff49990b2dd1305f2e7,
-    type: 2}
-  savedItemModel: {fileID: 1804499626969868, guid: 6e92c7758db397c4f83c2a154907c2a6,
-    type: 2}
+  userSavedMenuItemObject: {fileID: 0}
+  savedItemModel: {fileID: 0}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}
   virtualAvatar: {fileID: 0}
-  originalScale: {x: 0.63, y: 1, z: 0.15}
-  spawner: {fileID: 0}
-  enlargeDistance: 0.3
+  originalScale: {x: 0, y: 0, z: 0}
+  thisClothModel: {fileID: 1804499626969868, guid: 64886f752e51b0e489d183b6d533f53e,
+    type: 2}
+  menuOwner: {fileID: 0}
+  isHistory: 1
+  currentCreatedModel: {fileID: 0}

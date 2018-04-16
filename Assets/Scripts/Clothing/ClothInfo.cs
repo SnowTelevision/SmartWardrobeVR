@@ -12,7 +12,9 @@ public class ClothInfo : VRTK_InteractableObject
     public string clothName; // Name of the cloth
     public Transform belongingItemWrap; // The "matching" second level menu item for this unreal cloth
     public TryOnCloth secondMenuWrapTryOn; // The TryOnCloth attached to its second level menu wrap
-    public InteractableClothInfo userListMenuItemObject; // The version of this object to be put into the saved or history menu
+    public InteractableClothInfo userHistoryMenuItemObject; // The version of this object to be put into the history menu
+    public InteractableClothInfo userSavedMenuItemObject; // The version of this object to be put into the saved menu
+    public GameObject savedItemModel; // The model used when this cloth is in the saved menu on the controller
 
     public bool isWeared; // If the cloth is currently weared
     public bool isTouchingUserBody; // If the cloth is currently touching the user's body and will be weared if the user ungrab it
@@ -138,7 +140,6 @@ public class ClothInfo : VRTK_InteractableObject
     /// <returns></returns>
     public IEnumerator ReturnToMenuAnimation()
     {
-        GetComponent<Collider>().enabled = false;
         transform.localScale = originalScale;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -170,6 +171,9 @@ public class ClothInfo : VRTK_InteractableObject
             startLocalEuler.z = Mathf.Repeat(transform.localEulerAngles.z, 360);
         }
 
+        yield return null;
+        GetComponent<Collider>().enabled = false;
+
         for (float t = 0; t < 1; t += Time.deltaTime / 0.5f)
         {
             transform.localPosition = Vector3.Lerp(startLocalPosition, Vector3.zero, t);
@@ -179,8 +183,8 @@ public class ClothInfo : VRTK_InteractableObject
         
         transform.localPosition = Vector3.zero;
         transform.localEulerAngles = Vector3.zero;
-        GetComponent<Collider>().enabled = true;
         returningMenuCoroutine = null;
         GetComponent<Collider>().enabled = true;
+        GetComponent<MeshRenderer>().enabled = true;
     }
 }

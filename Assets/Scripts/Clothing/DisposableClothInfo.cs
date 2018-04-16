@@ -49,7 +49,21 @@ public class DisposableClothInfo : ClothInfo
 
     public override void OnInteractableObjectUngrabbed(InteractableObjectEventArgs e)
     {
-        //StartCoroutine(UngrabProc());
+        StartCoroutine(UngrabProc(e));
+
+        //if (!isWeared && !isTouchingUserBody)
+        //{
+        //    Destroy(gameObject);
+        //}
+
+        //spawner.currentCreatedModel = null;
+        //base.BaseOnInteractableObjectUngrabbed(e);
+    }
+
+    public IEnumerator UngrabProc(InteractableObjectEventArgs e)
+    {
+        yield return new WaitForSeconds(0.1f);
+        yield return null;
 
         if (!isWeared && !isTouchingUserBody)
         {
@@ -60,23 +74,8 @@ public class DisposableClothInfo : ClothInfo
         base.BaseOnInteractableObjectUngrabbed(e);
     }
 
-    public IEnumerator UngrabProc(InteractableObjectEventArgs e)
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        if (!isWeared && !isTouchingUserBody)
-        {
-            spawner.currentCreatedModel = null;
-            Destroy(gameObject);
-        }
-
-        base.BaseOnInteractableObjectUngrabbed(e);
-    }
-
     public override void OnInteractableObjectUntouched(InteractableObjectEventArgs e)
     {
-        base.OnInteractableObjectUntouched(e);
-
         // Prevent the newly created cloth get interacted by the controller that has the menu that created it
         if (e.interactingObject == spawner.menuOwner.gameObject ||
             isTouchingUserBody || isWeared)

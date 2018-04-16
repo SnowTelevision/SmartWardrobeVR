@@ -22,7 +22,10 @@ public class RealBodyWearCloth : MonoBehaviour
     void Update()
     {
         // Keep the wearing cloth's original scale
-        currentVirtualCloth.transform.localScale = currentVirtualCloth.originalScale; 
+        if (currentVirtualCloth != null)
+        {
+            currentVirtualCloth.transform.localScale = currentVirtualCloth.originalScale;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,6 +72,10 @@ public class RealBodyWearCloth : MonoBehaviour
                 }
                 else if (!collidingClothInfo.isRealCloth && currentVirtualCloth == collidingClothInfo)
                 {
+                    if (!currentVirtualCloth.freelyWear)
+                    {
+                        RepositionCloth(collidingClothInfo);
+                    }
                     return;
                 }
                 //print("B, " + other.name);
@@ -76,11 +83,11 @@ public class RealBodyWearCloth : MonoBehaviour
                 if (!collidingClothInfo.isRealCloth)
                 {
                     // Add cloth into history if it is not already in there
-                    if (collidingClothInfo.userListMenuItemObject != null &&
+                    if (collidingClothInfo.userHistoryMenuItemObject != null &&
                         !WardrobeDatabase.database.tryHistory.Exists(
-                        c => c.thisClothModel.name == collidingClothInfo.userListMenuItemObject.thisClothModel.name))
+                        c => c.thisClothModel.name == collidingClothInfo.userHistoryMenuItemObject.thisClothModel.name))
                     {
-                        WardrobeDatabase.database.tryHistory.Add(collidingClothInfo.userListMenuItemObject);
+                        WardrobeDatabase.database.tryHistory.Add(collidingClothInfo.userHistoryMenuItemObject);
                     }
                 }
 
@@ -103,6 +110,15 @@ public class RealBodyWearCloth : MonoBehaviour
             //    }
             //}
         }
+    }
+
+    /// <summary>
+    /// Reposition cloth to right position if it is already weared and is not free wear
+    /// </summary>
+    public void RepositionCloth(ClothInfo cloth)
+    {
+        cloth.transform.localPosition = cloth.clothLocalPosition;
+        cloth.transform.localEulerAngles = cloth.clothLocalEulerAngles;
     }
 
     /// <summary>

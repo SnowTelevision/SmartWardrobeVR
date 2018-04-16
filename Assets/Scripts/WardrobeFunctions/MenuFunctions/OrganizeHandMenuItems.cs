@@ -167,10 +167,14 @@ public class OrganizeHandMenuItems : MonoBehaviour
                 GameObject newHistoryCloth = Instantiate(itemList[i].gameObject, historyClothMenuWrap.transform);
                 newHistoryCloth.GetComponent<InteractableClothInfo>().menuOwner = transform;
             }
-            if (!isHistory && savedClothMenuWrap.transform.Find(itemList[i].gameObject.name + "(Clone)"))
+            if (!isHistory && !savedClothMenuWrap.transform.Find(itemList[i].gameObject.name + "(Clone)"))
             {
                 GameObject newSavedCloth = Instantiate(itemList[i].gameObject, savedClothMenuWrap.transform);
                 newSavedCloth.GetComponent<InteractableClothInfo>().menuOwner = transform;
+                // Set color for saved cloth
+                Color savedColor = newSavedCloth.GetComponent<MeshRenderer>().material.color;
+                savedColor.a = 100f / 255f;
+                newSavedCloth.GetComponent<MeshRenderer>().material.color = savedColor;
             }
 
             initialLocalPositions.Add(Vector3.zero);

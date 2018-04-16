@@ -151,7 +151,11 @@ MonoBehaviour:
   clothName: 
   belongingItemWrap: {fileID: 0}
   secondMenuWrapTryOn: {fileID: 0}
-  userListMenuItemObject: {fileID: 0}
+  userHistoryMenuItemObject: {fileID: 0}
+  userSavedMenuItemObject: {fileID: 114973627361831530, guid: 70fbea161f204644dae74d9cfcb2ff53,
+    type: 2}
+  savedItemModel: {fileID: 1887537100969424, guid: b683670a64f0a0b4fa21e5741356e491,
+    type: 2}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}
