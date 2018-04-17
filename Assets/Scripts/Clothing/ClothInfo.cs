@@ -22,6 +22,7 @@ public class ClothInfo : VRTK_InteractableObject
     public GameObject virtualAvatar; // The gameobject for its virtual model in the wardrobe database
     public Vector3 originalScale; // The scale the cloth should keeps
     public Coroutine returningMenuCoroutine; // The animation that is returning menu
+    public bool justSaved; // Is the cloth just saved or un-saved
 
     // Use this for initialization
     public virtual void Start()
@@ -58,8 +59,41 @@ public class ClothInfo : VRTK_InteractableObject
 
         //    }
         //}
+        CheckIfSaveCloth();
 
         base.Update();
+    }
+
+    /// <summary>
+    /// Check if the user want to save or un-save the cloth he is grabbing
+    /// </summary>
+    public void CheckIfSaveCloth()
+    {
+        if (!IsTouched() || justSaved)
+        {
+            justSaved = false;
+            return;
+        }
+
+        foreach (GameObject g in touchingObjects)
+        {
+            if (ControllerEventsListener.touchpadReleased &&
+                g.GetComponent<VRTK_ControllerEvents>() &&
+                ControllerEventsListener.latestEventSender == g.GetComponent<VRTK_ControllerEvents>())
+            {
+                justSaved = true; // Prevent the save option run twice because of the controller event set back delay
+
+                if (!WardrobeDatabase.database.choseCloth.Exists(
+                    c => c.thisClothModel.name == userSavedMenuItemObject.thisClothModel.name))
+                {
+                    WardrobeDatabase.database.choseCloth.Add(userSavedMenuItemObject);
+                }
+                else
+                {
+                    WardrobeDatabase.database.choseCloth.Remove(userSavedMenuItemObject);
+                }
+            }
+        }
     }
 
     public void BaseOnInteractableObjectGrabbed(InteractableObjectEventArgs e)
@@ -180,7 +214,7 @@ public class ClothInfo : VRTK_InteractableObject
             transform.localEulerAngles = Vector3.Lerp(startLocalEuler, Vector3.zero, t);
             yield return null;
         }
-        
+
         transform.localPosition = Vector3.zero;
         transform.localEulerAngles = Vector3.zero;
         returningMenuCoroutine = null;

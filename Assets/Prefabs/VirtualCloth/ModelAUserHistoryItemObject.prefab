@@ -152,13 +152,15 @@ MonoBehaviour:
   belongingItemWrap: {fileID: 0}
   secondMenuWrapTryOn: {fileID: 0}
   userHistoryMenuItemObject: {fileID: 0}
-  userSavedMenuItemObject: {fileID: 0}
+  userSavedMenuItemObject: {fileID: 114248812049975948, guid: 58f2fe6ea96f78448b249f5f5b62d7c9,
+    type: 2}
   savedItemModel: {fileID: 0}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}
   virtualAvatar: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  justSaved: 0
   thisClothModel: {fileID: 1440059977320748, guid: 0f2659b983fc0b0498db816563c1aee7,
     type: 2}
   menuOwner: {fileID: 0}

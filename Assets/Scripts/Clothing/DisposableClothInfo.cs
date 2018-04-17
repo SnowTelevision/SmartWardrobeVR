@@ -83,9 +83,10 @@ public class DisposableClothInfo : ClothInfo
             return;
         }
 
-        spawner.currentCreatedModel = null;
-        //spawner.GetComponent<MeshRenderer>().enabled = true;
-        Destroy(gameObject);
+        //spawner.currentCreatedModel = null;
+        ////spawner.GetComponent<MeshRenderer>().enabled = true;
+        //Destroy(gameObject);
+        StartCoroutine(UngrabProc(e));
     }
 
     private void OnDestroy()

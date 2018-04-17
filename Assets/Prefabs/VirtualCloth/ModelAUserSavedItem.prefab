@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 65242711633833488}
   - component: {fileID: 54491822847548750}
   m_Layer: 13
-  m_Name: ModelAUserSavedItemObject
+  m_Name: ModelAUserSavedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,8 @@ MonoBehaviour:
   clothLocation: {fileID: 0}
   virtualAvatar: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
-  thisClothModel: {fileID: 0}
+  thisClothModel: {fileID: 1440059977320748, guid: 0f2659b983fc0b0498db816563c1aee7,
+    type: 2}
   menuOwner: {fileID: 0}
   isHistory: 0
   currentCreatedModel: {fileID: 0}

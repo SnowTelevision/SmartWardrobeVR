@@ -31,13 +31,14 @@ public class InteractableClothInfo : ClothInfo
 
     public override void OnInteractableObjectTouched(InteractableObjectEventArgs e)
     {
-        if (isHistory)
+        // Prevent the same controller that opens the menu spawn the menu item
+        if (menuOwner.name == e.interactingObject.name)
         {
-            if (menuOwner.name == e.interactingObject.name)
-            {
-                return;
-            }
+            return;
+        }
 
+        if (isHistory)
+        { 
             //GetComponent<MeshRenderer>().enabled = true;
             if (currentCreatedModel == null)
             {

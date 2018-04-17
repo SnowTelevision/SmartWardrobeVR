@@ -96,13 +96,13 @@ public class OrganizeHandMenuItems : MonoBehaviour
         {
             StopCoroutine(expandHistoryMenuAnimation);
         }
-        if (expandSavedMenuAnimation != null)
-        {
-            StopCoroutine(expandSavedMenuAnimation);
-        }
+        //if (expandSavedMenuAnimation != null)
+        //{
+        //    StopCoroutine(expandSavedMenuAnimation);
+        //}
 
         expandHistoryMenuAnimation = StartCoroutine(ExpandMenu(WardrobeDatabase.database.tryHistory, true));
-        expandSavedMenuAnimation = StartCoroutine(ExpandMenu(WardrobeDatabase.database.choseCloth, false));
+        //expandSavedMenuAnimation = StartCoroutine(ExpandMenu(WardrobeDatabase.database.choseCloth, false));
         //if (right)
         //{
         //    if (name == "LeftController")
@@ -249,11 +249,11 @@ public class OrganizeHandMenuItems : MonoBehaviour
     public Vector3 CalculateRelativePosition(int itemIndex, List<InteractableClothInfo> itemList)
     {
         Vector3 relativePosi = Vector3.zero;
-        float angle = 180f / (float)itemList.Count * itemIndex + 22.5f; // Calculate the angle between the item and the menu's forward direction
+        //float angle = 180f / (float)itemList.Count * itemIndex + 22.5f; // Calculate the angle between the item and the menu's forward direction
 
-        relativePosi.x = Mathf.Sin(Mathf.Deg2Rad * angle) * menuDistance;
-        relativePosi.z = Mathf.Cos(Mathf.Deg2Rad * angle) * menuDistance;
-
+        //relativePosi.x = Mathf.Sin(Mathf.Deg2Rad * angle) * menuDistance;
+        //relativePosi.z = Mathf.Cos(Mathf.Deg2Rad * angle) * menuDistance;
+        relativePosi.y += (1 + itemIndex) * 0.1f;
 
         return relativePosi;
     }
