@@ -129,6 +129,8 @@ MonoBehaviour:
     sharpness: 0.25
     stationaryBlending: 0.95
     motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
   fastApproximateAntialiasing:
     fastMode: 0
     keepAlpha: 0
@@ -173,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 27cc16b4423e7a544bc25ec52a59f09a, type: 2}
+  sharedProfile: {fileID: 11400000, guid: f0d09beffb5f458428b74f8f8ffdc50d, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1

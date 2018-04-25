@@ -13,6 +13,9 @@ public class MoveWithAnotherObject : MonoBehaviour
     public bool followEulerX; // Follow the X euler angle?
     public bool followEulerY; // Follow the Y euler angle?
     public bool followEulerZ; // Follow the Z euler angle?
+    public bool revertEulerX; // Does this reverse the followed object's rotation
+    public bool revertEulerY; // Does this reverse the followed object's rotation
+    public bool revertEulerZ; // Does this reverse the followed object's rotation
     public Vector3 positionOffset; // The offset for position
     public Vector3 eulerAngleOffset; // The offset for eulerAngle;
 
@@ -22,7 +25,10 @@ public class MoveWithAnotherObject : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        if (eulerAngleOffset == Vector3.zero)
+        {
+            eulerAngleOffset = transform.eulerAngles;
+        }
     }
 
     // Update is called once per frame
@@ -75,11 +81,38 @@ public class MoveWithAnotherObject : MonoBehaviour
     {
         if (followLocalEuler)
         {
-            newEulerAngle = objectToFollow.localEulerAngles + eulerAngleOffset;
+            //if (!revertEuler)
+            {
+                newEulerAngle = objectToFollow.localEulerAngles + eulerAngleOffset;
+            }
+            //else
+            //{
+            //    newEulerAngle = -objectToFollow.localEulerAngles + eulerAngleOffset;
+            //}
         }
         else
         {
-            newEulerAngle = objectToFollow.eulerAngles + eulerAngleOffset;
+            //if (!revertEuler)
+            {
+                newEulerAngle = objectToFollow.eulerAngles + eulerAngleOffset;
+            }
+            //else
+            //{
+            //    newEulerAngle = -objectToFollow.eulerAngles + eulerAngleOffset;
+            //}
+        }
+
+        if (revertEulerX)
+        {
+            newEulerAngle.x += 180;
+        }
+        if (revertEulerY)
+        {
+            newEulerAngle.y += 180;
+        }
+        if (revertEulerZ)
+        {
+            newEulerAngle.z += 180;
         }
 
         if (!followEulerX)

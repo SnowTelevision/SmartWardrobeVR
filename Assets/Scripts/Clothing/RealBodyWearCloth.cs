@@ -5,7 +5,7 @@ using VRTK;
 
 public class RealBodyWearCloth : MonoBehaviour
 {
-
+    public GameObject bodyModel; // The default model for the player's body
 
     public List<ClothInfo> clothes; // The cloth(es) currently wearing
     public ClothInfo currentVirtualCloth; // The virtual cloth that is currently trying on in the mirror
@@ -25,6 +25,15 @@ public class RealBodyWearCloth : MonoBehaviour
         if (currentVirtualCloth != null)
         {
             currentVirtualCloth.transform.localScale = currentVirtualCloth.originalScale;
+        }
+
+        if (clothes.Count > 0 || currentVirtualCloth != null)
+        {
+            bodyModel.SetActive(false);
+        }
+        else
+        {
+            bodyModel.SetActive(true);
         }
     }
 

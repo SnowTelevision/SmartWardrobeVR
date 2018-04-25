@@ -1,0 +1,300 @@
+fileFormatVersion: 2
+guid: 625b0d9a410794c5ebb98a75eb059138
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: character_for_clothes_not_t_pose:BrowInnerL
+    100002: character_for_clothes_not_t_pose:BrowInnerR
+    100004: character_for_clothes_not_t_pose:BrowOuterL
+    100006: character_for_clothes_not_t_pose:BrowOuterR
+    100008: character_for_clothes_not_t_pose:CheekL
+    100010: character_for_clothes_not_t_pose:CheekR
+    100012: character_for_clothes_not_t_pose:Head
+    100014: character_for_clothes_not_t_pose:HeadEnd
+    100016: character_for_clothes_not_t_pose:Hips
+    100018: character_for_clothes_not_t_pose:Jaw
+    100020: character_for_clothes_not_t_pose:LeftArm
+    100022: character_for_clothes_not_t_pose:LeftEye
+    100024: character_for_clothes_not_t_pose:LeftFingerBase
+    100026: character_for_clothes_not_t_pose:LeftFoot
+    100028: character_for_clothes_not_t_pose:LeftForeArm
+    100030: character_for_clothes_not_t_pose:LeftHand
+    100032: character_for_clothes_not_t_pose:LeftHandIndex0
+    100034: character_for_clothes_not_t_pose:LeftHandIndex1
+    100036: character_for_clothes_not_t_pose:LeftHandIndex2
+    100038: character_for_clothes_not_t_pose:LeftHandIndex3
+    100040: character_for_clothes_not_t_pose:LeftHandIndex4
+    100042: character_for_clothes_not_t_pose:LeftHandMiddle1
+    100044: character_for_clothes_not_t_pose:LeftHandMiddle2
+    100046: character_for_clothes_not_t_pose:LeftHandMiddle3
+    100048: character_for_clothes_not_t_pose:LeftHandMiddle4
+    100050: character_for_clothes_not_t_pose:LeftHandPinky0
+    100052: character_for_clothes_not_t_pose:LeftHandPinky1
+    100054: character_for_clothes_not_t_pose:LeftHandPinky2
+    100056: character_for_clothes_not_t_pose:LeftHandPinky3
+    100058: character_for_clothes_not_t_pose:LeftHandPinky4
+    100060: character_for_clothes_not_t_pose:LeftHandRing1
+    100062: character_for_clothes_not_t_pose:LeftHandRing2
+    100064: character_for_clothes_not_t_pose:LeftHandRing3
+    100066: character_for_clothes_not_t_pose:LeftHandRing4
+    100068: character_for_clothes_not_t_pose:LeftHandThumb1
+    100070: character_for_clothes_not_t_pose:LeftHandThumb2
+    100072: character_for_clothes_not_t_pose:LeftHandThumb3
+    100074: character_for_clothes_not_t_pose:LeftHandThumb4
+    100076: character_for_clothes_not_t_pose:LeftLeg
+    100078: character_for_clothes_not_t_pose:LeftShoulder
+    100080: character_for_clothes_not_t_pose:LeftToeBase
+    100082: character_for_clothes_not_t_pose:LeftToeEnd
+    100084: character_for_clothes_not_t_pose:LeftUpLeg
+    100086: character_for_clothes_not_t_pose:LipCornerL
+    100088: character_for_clothes_not_t_pose:LipCornerR
+    100090: character_for_clothes_not_t_pose:LipLowerL
+    100092: character_for_clothes_not_t_pose:LipLowerR
+    100094: character_for_clothes_not_t_pose:LipUpperL
+    100096: character_for_clothes_not_t_pose:LipUpperR
+    100098: character_for_clothes_not_t_pose:LowerLidL
+    100100: character_for_clothes_not_t_pose:LowerLidR
+    100102: character_for_clothes_not_t_pose:master
+    100104: character_for_clothes_not_t_pose:Neck
+    100106: character_for_clothes_not_t_pose:Nostrils
+    100108: character_for_clothes_not_t_pose:Reference
+    100110: character_for_clothes_not_t_pose:RightArm
+    100112: character_for_clothes_not_t_pose:RightEye
+    100114: character_for_clothes_not_t_pose:RightFingerBase
+    100116: character_for_clothes_not_t_pose:RightFoot
+    100118: character_for_clothes_not_t_pose:RightForeArm
+    100120: character_for_clothes_not_t_pose:RightHand
+    100122: character_for_clothes_not_t_pose:RightHandIndex0
+    100124: character_for_clothes_not_t_pose:RightHandIndex1
+    100126: character_for_clothes_not_t_pose:RightHandIndex2
+    100128: character_for_clothes_not_t_pose:RightHandIndex3
+    100130: character_for_clothes_not_t_pose:RightHandIndex4
+    100132: character_for_clothes_not_t_pose:RightHandMiddle1
+    100134: character_for_clothes_not_t_pose:RightHandMiddle2
+    100136: character_for_clothes_not_t_pose:RightHandMiddle3
+    100138: character_for_clothes_not_t_pose:RightHandMiddle4
+    100140: character_for_clothes_not_t_pose:RightHandPinky0
+    100142: character_for_clothes_not_t_pose:RightHandPinky1
+    100144: character_for_clothes_not_t_pose:RightHandPinky2
+    100146: character_for_clothes_not_t_pose:RightHandPinky3
+    100148: character_for_clothes_not_t_pose:RightHandPinky4
+    100150: character_for_clothes_not_t_pose:RightHandRing1
+    100152: character_for_clothes_not_t_pose:RightHandRing2
+    100154: character_for_clothes_not_t_pose:RightHandRing3
+    100156: character_for_clothes_not_t_pose:RightHandRing4
+    100158: character_for_clothes_not_t_pose:RightHandThumb1
+    100160: character_for_clothes_not_t_pose:RightHandThumb2
+    100162: character_for_clothes_not_t_pose:RightHandThumb3
+    100164: character_for_clothes_not_t_pose:RightHandThumb4
+    100166: character_for_clothes_not_t_pose:RightLeg
+    100168: character_for_clothes_not_t_pose:RightShoulder
+    100170: character_for_clothes_not_t_pose:RightToeBase
+    100172: character_for_clothes_not_t_pose:RightToeEnd
+    100174: character_for_clothes_not_t_pose:RightUpLeg
+    100176: character_for_clothes_not_t_pose:Spine
+    100178: character_for_clothes_not_t_pose:Spine1
+    100180: character_for_clothes_not_t_pose:Spine2
+    100182: character_for_clothes_not_t_pose:TongueF
+    100184: character_for_clothes_not_t_pose:TongueR
+    100186: character_for_clothes_not_t_pose:UpperLidL
+    100188: character_for_clothes_not_t_pose:UpperLidR
+    100190: H_DDS_MidRes1
+    100192: left shoe
+    100194: right shoe
+    100196: running_whole_low
+    100198: //RootNode
+    400000: character_for_clothes_not_t_pose:BrowInnerL
+    400002: character_for_clothes_not_t_pose:BrowInnerR
+    400004: character_for_clothes_not_t_pose:BrowOuterL
+    400006: character_for_clothes_not_t_pose:BrowOuterR
+    400008: character_for_clothes_not_t_pose:CheekL
+    400010: character_for_clothes_not_t_pose:CheekR
+    400012: character_for_clothes_not_t_pose:Head
+    400014: character_for_clothes_not_t_pose:HeadEnd
+    400016: character_for_clothes_not_t_pose:Hips
+    400018: character_for_clothes_not_t_pose:Jaw
+    400020: character_for_clothes_not_t_pose:LeftArm
+    400022: character_for_clothes_not_t_pose:LeftEye
+    400024: character_for_clothes_not_t_pose:LeftFingerBase
+    400026: character_for_clothes_not_t_pose:LeftFoot
+    400028: character_for_clothes_not_t_pose:LeftForeArm
+    400030: character_for_clothes_not_t_pose:LeftHand
+    400032: character_for_clothes_not_t_pose:LeftHandIndex0
+    400034: character_for_clothes_not_t_pose:LeftHandIndex1
+    400036: character_for_clothes_not_t_pose:LeftHandIndex2
+    400038: character_for_clothes_not_t_pose:LeftHandIndex3
+    400040: character_for_clothes_not_t_pose:LeftHandIndex4
+    400042: character_for_clothes_not_t_pose:LeftHandMiddle1
+    400044: character_for_clothes_not_t_pose:LeftHandMiddle2
+    400046: character_for_clothes_not_t_pose:LeftHandMiddle3
+    400048: character_for_clothes_not_t_pose:LeftHandMiddle4
+    400050: character_for_clothes_not_t_pose:LeftHandPinky0
+    400052: character_for_clothes_not_t_pose:LeftHandPinky1
+    400054: character_for_clothes_not_t_pose:LeftHandPinky2
+    400056: character_for_clothes_not_t_pose:LeftHandPinky3
+    400058: character_for_clothes_not_t_pose:LeftHandPinky4
+    400060: character_for_clothes_not_t_pose:LeftHandRing1
+    400062: character_for_clothes_not_t_pose:LeftHandRing2
+    400064: character_for_clothes_not_t_pose:LeftHandRing3
+    400066: character_for_clothes_not_t_pose:LeftHandRing4
+    400068: character_for_clothes_not_t_pose:LeftHandThumb1
+    400070: character_for_clothes_not_t_pose:LeftHandThumb2
+    400072: character_for_clothes_not_t_pose:LeftHandThumb3
+    400074: character_for_clothes_not_t_pose:LeftHandThumb4
+    400076: character_for_clothes_not_t_pose:LeftLeg
+    400078: character_for_clothes_not_t_pose:LeftShoulder
+    400080: character_for_clothes_not_t_pose:LeftToeBase
+    400082: character_for_clothes_not_t_pose:LeftToeEnd
+    400084: character_for_clothes_not_t_pose:LeftUpLeg
+    400086: character_for_clothes_not_t_pose:LipCornerL
+    400088: character_for_clothes_not_t_pose:LipCornerR
+    400090: character_for_clothes_not_t_pose:LipLowerL
+    400092: character_for_clothes_not_t_pose:LipLowerR
+    400094: character_for_clothes_not_t_pose:LipUpperL
+    400096: character_for_clothes_not_t_pose:LipUpperR
+    400098: character_for_clothes_not_t_pose:LowerLidL
+    400100: character_for_clothes_not_t_pose:LowerLidR
+    400102: character_for_clothes_not_t_pose:master
+    400104: character_for_clothes_not_t_pose:Neck
+    400106: character_for_clothes_not_t_pose:Nostrils
+    400108: character_for_clothes_not_t_pose:Reference
+    400110: character_for_clothes_not_t_pose:RightArm
+    400112: character_for_clothes_not_t_pose:RightEye
+    400114: character_for_clothes_not_t_pose:RightFingerBase
+    400116: character_for_clothes_not_t_pose:RightFoot
+    400118: character_for_clothes_not_t_pose:RightForeArm
+    400120: character_for_clothes_not_t_pose:RightHand
+    400122: character_for_clothes_not_t_pose:RightHandIndex0
+    400124: character_for_clothes_not_t_pose:RightHandIndex1
+    400126: character_for_clothes_not_t_pose:RightHandIndex2
+    400128: character_for_clothes_not_t_pose:RightHandIndex3
+    400130: character_for_clothes_not_t_pose:RightHandIndex4
+    400132: character_for_clothes_not_t_pose:RightHandMiddle1
+    400134: character_for_clothes_not_t_pose:RightHandMiddle2
+    400136: character_for_clothes_not_t_pose:RightHandMiddle3
+    400138: character_for_clothes_not_t_pose:RightHandMiddle4
+    400140: character_for_clothes_not_t_pose:RightHandPinky0
+    400142: character_for_clothes_not_t_pose:RightHandPinky1
+    400144: character_for_clothes_not_t_pose:RightHandPinky2
+    400146: character_for_clothes_not_t_pose:RightHandPinky3
+    400148: character_for_clothes_not_t_pose:RightHandPinky4
+    400150: character_for_clothes_not_t_pose:RightHandRing1
+    400152: character_for_clothes_not_t_pose:RightHandRing2
+    400154: character_for_clothes_not_t_pose:RightHandRing3
+    400156: character_for_clothes_not_t_pose:RightHandRing4
+    400158: character_for_clothes_not_t_pose:RightHandThumb1
+    400160: character_for_clothes_not_t_pose:RightHandThumb2
+    400162: character_for_clothes_not_t_pose:RightHandThumb3
+    400164: character_for_clothes_not_t_pose:RightHandThumb4
+    400166: character_for_clothes_not_t_pose:RightLeg
+    400168: character_for_clothes_not_t_pose:RightShoulder
+    400170: character_for_clothes_not_t_pose:RightToeBase
+    400172: character_for_clothes_not_t_pose:RightToeEnd
+    400174: character_for_clothes_not_t_pose:RightUpLeg
+    400176: character_for_clothes_not_t_pose:Spine
+    400178: character_for_clothes_not_t_pose:Spine1
+    400180: character_for_clothes_not_t_pose:Spine2
+    400182: character_for_clothes_not_t_pose:TongueF
+    400184: character_for_clothes_not_t_pose:TongueR
+    400186: character_for_clothes_not_t_pose:UpperLidL
+    400188: character_for_clothes_not_t_pose:UpperLidR
+    400190: H_DDS_MidRes1
+    400192: left shoe
+    400194: right shoe
+    400196: running_whole_low
+    400198: //RootNode
+    2100000: character_for_clothes_not_t_pose__Body_Mid
+    2100002: character_for_clothes_not_t_pose__Eye_trans
+    2100004: character_for_clothes_not_t_pose__Body
+    2100006: lambert3
+    2100008: Shoes 3
+    4300000: H_DDS_MidRes1
+    4300002: running_whole_low
+    4300004: left shoe
+    4300006: right shoe
+    9500000: //RootNode
+    13700000: H_DDS_MidRes1
+    13700002: left shoe
+    13700004: right shoe
+    13700006: running_whole_low
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

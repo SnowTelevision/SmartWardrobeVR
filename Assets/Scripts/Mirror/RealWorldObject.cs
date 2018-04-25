@@ -18,7 +18,7 @@ public class RealWorldObject : MonoBehaviour
             // Change the layer of the mirror object
             foreach (Transform t in GetComponentsInChildren<Transform>())
             {
-                if (t.name != "GazeDetector")
+                if (t.name != "GazeDetector" && t.gameObject.layer != LayerMask.NameToLayer("HideForVRCamera"))
                 {
                     t.gameObject.layer = LayerMask.NameToLayer("RealWorld");
                 }

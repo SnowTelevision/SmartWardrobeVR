@@ -15,6 +15,9 @@ public class ClothInfo : VRTK_InteractableObject
     public InteractableClothInfo userHistoryMenuItemObject; // The version of this object to be put into the history menu
     public InteractableClothInfo userSavedMenuItemObject; // The version of this object to be put into the saved menu
     public GameObject savedItemModel; // The model used when this cloth is in the saved menu on the controller
+    public bool hasAlterWearingModel; // Does the cloth have an alternate model to be displayed when it is weared
+    public GameObject alternateWearingModel; // The alternate wearing model
+    public GameObject displayingModel; // The default displaying model when the cloth is not weared
 
     public bool isWeared; // If the cloth is currently weared
     public bool isTouchingUserBody; // If the cloth is currently touching the user's body and will be weared if the user ungrab it
@@ -60,6 +63,19 @@ public class ClothInfo : VRTK_InteractableObject
         //    }
         //}
         CheckIfSaveCloth();
+        if (hasAlterWearingModel)
+        {
+            if(isWeared)
+            {
+                displayingModel.SetActive(false);
+                alternateWearingModel.SetActive(true);
+            }
+            else
+            {
+                displayingModel.SetActive(true);
+                alternateWearingModel.SetActive(false);
+            }
+        }
 
         base.Update();
     }
