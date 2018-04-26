@@ -1126,6 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12aaf63c3fa61a54bacf800984c6e6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyModel: {fileID: 0}
   clothes: []
   currentVirtualCloth: {fileID: 0}
   toBeWeared: {fileID: 0}
@@ -1150,6 +1151,9 @@ MonoBehaviour:
   followEulerX: 0
   followEulerY: 1
   followEulerZ: 0
+  revertEulerX: 0
+  revertEulerY: 0
+  revertEulerZ: 0
   positionOffset: {x: 0, y: -0.4, z: 0}
   eulerAngleOffset: {x: 0, y: 0, z: 0}
   newPosition: {x: 0, y: 0, z: 0}
@@ -1972,6 +1976,9 @@ MonoBehaviour:
   followEulerX: 1
   followEulerY: 1
   followEulerZ: 1
+  revertEulerX: 0
+  revertEulerY: 0
+  revertEulerZ: 0
   positionOffset: {x: 0, y: 0, z: 0}
   eulerAngleOffset: {x: 0, y: 0, z: 0}
   newPosition: {x: 0, y: 0, z: 0}
@@ -2000,7 +2007,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.49999997
+  m_Radius: 0.13
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &536465879
 GameObject:
@@ -3139,6 +3146,9 @@ MonoBehaviour:
     type: 2}
   savedItemModel: {fileID: 1887537100969424, guid: b683670a64f0a0b4fa21e5741356e491,
     type: 2}
+  hasAlterWearingModel: 0
+  alternateWearingModel: {fileID: 0}
+  displayingModel: {fileID: 0}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}
@@ -5782,6 +5792,9 @@ MonoBehaviour:
     type: 2}
   savedItemModel: {fileID: 1440059977320748, guid: 7559dbaac4bec6742bf034e6777afd19,
     type: 2}
+  hasAlterWearingModel: 0
+  alternateWearingModel: {fileID: 0}
+  displayingModel: {fileID: 0}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}
@@ -6371,6 +6384,9 @@ MonoBehaviour:
     type: 2}
   savedItemModel: {fileID: 1804499626969868, guid: 6e92c7758db397c4f83c2a154907c2a6,
     type: 2}
+  hasAlterWearingModel: 0
+  alternateWearingModel: {fileID: 0}
+  displayingModel: {fileID: 0}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}

@@ -68,12 +68,12 @@ public class ClothInfo : VRTK_InteractableObject
             if(isWeared)
             {
                 displayingModel.SetActive(false);
-                alternateWearingModel.SetActive(true);
+                Destroy(HologramDisplayer.currentHologram);
+                HologramDisplayer.currentHologram = Instantiate(alternateWearingModel);
             }
             else
             {
                 displayingModel.SetActive(true);
-                alternateWearingModel.SetActive(false);
             }
         }
 

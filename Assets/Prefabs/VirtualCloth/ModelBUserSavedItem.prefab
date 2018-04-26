@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1084052461725944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09238796, y: 0, z: -0.03826834}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.063, y: 0.1, z: 0.015}
   m_Children: []
   m_Father: {fileID: 0}
@@ -154,11 +154,15 @@ MonoBehaviour:
   userHistoryMenuItemObject: {fileID: 0}
   userSavedMenuItemObject: {fileID: 0}
   savedItemModel: {fileID: 0}
+  hasAlterWearingModel: 0
+  alternateWearingModel: {fileID: 0}
+  displayingModel: {fileID: 0}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}
   virtualAvatar: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  justSaved: 0
   thisClothModel: {fileID: 1887537100969424, guid: f620e3e53a5f25e4ab9b924b5184c46a,
     type: 2}
   menuOwner: {fileID: 0}

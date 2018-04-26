@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4410125585127578}
   - component: {fileID: 33776301071298378}
-  - component: {fileID: 23728844000679598}
   - component: {fileID: 114973627361831530}
   - component: {fileID: 65329042946068304}
   - component: {fileID: 54165123576734746}
@@ -30,7 +29,38 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!1 &1594234039095524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4331818907033720}
+  - component: {fileID: 33485904428072378}
+  - component: {fileID: 23869320662237318}
+  - component: {fileID: 114789304368353954}
+  m_Layer: 0
+  m_Name: kendo_low_no character_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4331818907033720
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1594234039095524}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4410125585127578}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4410125585127578
 Transform:
   m_ObjectHideFlags: 1
@@ -38,27 +68,28 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1084052461725944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09238796, y: 0, z: -0.03826834}
-  m_LocalScale: {x: 0.063, y: 0.1, z: 0.015}
-  m_Children: []
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4331818907033720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23728844000679598
+--- !u!23 &23869320662237318
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1084052461725944}
+  m_GameObject: {fileID: 1594234039095524}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2d3486d8413ef1d40a3d48c1732c2165, type: 2}
+  - {fileID: 2100000, guid: 39cb67743b21240baa0364593410e5bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -66,7 +97,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -78,6 +109,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!33 &33485904428072378
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1594234039095524}
+  m_Mesh: {fileID: 4300000, guid: 434f9979e8a05487992c10c1537ad78e, type: 3}
 --- !u!33 &33776301071298378
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -110,8 +148,22 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 1, z: 1}
+  m_Size: {x: 0.063, y: 1, z: 0.015}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114789304368353954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1594234039095524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f8b1828c27e824faa57e2f9f82b79c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emissionBreathLength: 5
+  emissionStrength: 1
+  clothMeshes: []
 --- !u!114 &114973627361831530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +207,10 @@ MonoBehaviour:
   userSavedMenuItemObject: {fileID: 114973627361831530, guid: 70fbea161f204644dae74d9cfcb2ff53,
     type: 2}
   savedItemModel: {fileID: 0}
+  hasAlterWearingModel: 0
+  alternateWearingModel: {fileID: 1711872854491126, guid: a4d389085e35ce944a080d15f8cf5dc7,
+    type: 2}
+  displayingModel: {fileID: 1594234039095524}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}
