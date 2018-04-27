@@ -16,8 +16,9 @@ public class WardrobeDatabase : MonoBehaviour
     public static WardrobeDatabase database; // The static reference of the database
     public List<InteractableClothInfo> tryHistory; // What are the clothes that the user have tried
     public List<InteractableClothInfo> choseCloth; // The clothes that the user selected to be highlighted in the wardrobe
-    public bool isOpeningDoor;
-    public bool isClosingDoor;
+    public bool hasOpenedDoor;
+    public bool hasClosedDoor;
+    public static bool isDoorOpen;
 
     // Use this for initialization
     void Start()
@@ -30,20 +31,20 @@ public class WardrobeDatabase : MonoBehaviour
     {
         UpdateSavedClothHighlights();
 
-        if (choseCloth.Count > 0 && !isOpeningDoor)
+        if (choseCloth.Count > 0 && !hasOpenedDoor && !isDoorOpen)
         {
-            isOpeningDoor = true;
-            isClosingDoor = false;
+            hasOpenedDoor = true;
+            hasClosedDoor = false;
             if (rotateDoorCoroutine != null)
             {
                 StopCoroutine(rotateDoorCoroutine);
             }
             rotateDoorCoroutine = StartCoroutine(RotateDoor(true));
         }
-        else if (choseCloth.Count == 0 && !isClosingDoor)
+        else if (choseCloth.Count == 0 && !hasClosedDoor && isDoorOpen)
         {
-            isOpeningDoor = false;
-            isClosingDoor = true;
+            hasOpenedDoor = false;
+            hasClosedDoor = true;
             if (rotateDoorCoroutine != null)
             {
                 StopCoroutine(rotateDoorCoroutine);
@@ -59,6 +60,7 @@ public class WardrobeDatabase : MonoBehaviour
             Vector3 leftDoorInitialEuler = leftDoor.eulerAngles;
             Vector3 leftDoorTargetEuler = Vector3.zero;
             leftDoorTargetEuler.y = openDoorAngle;
+            isDoorOpen = true;
 
             for (float t = 0; t < 1; 
                  t += Time.deltaTime / rotateDoorDuration / ((openDoorAngle - leftDoor.eulerAngles.y) / openDoorAngle))
@@ -75,6 +77,7 @@ public class WardrobeDatabase : MonoBehaviour
         {
             Vector3 leftDoorInitialEuler = leftDoor.eulerAngles;
             Vector3 leftDoorTargetEuler = Vector3.zero;
+            isDoorOpen = false;
 
             for (float t = 0; t < 1; 
                  t += Time.deltaTime / rotateDoorDuration / (leftDoor.eulerAngles.y / openDoorAngle))

@@ -7,6 +7,8 @@ public class DisposableClothInfo : ClothInfo
 {
     public InteractableClothInfo spawner; // Which hand menu item spawned it
     public float enlargeDistance; // How far from its spawner will it become large model
+    public GameObject largeModel; // The model to be displayed when it is large
+    public GameObject smallModel; // The wire model to be displayed when it is small
 
     // Use this for initialization
     public override void Start()
@@ -21,7 +23,7 @@ public class DisposableClothInfo : ClothInfo
         // Update size
         if (!isWeared)
         {
-            ChangeSize();
+            ChangeSizeAndLook();
         }
 
         base.Update();
@@ -30,15 +32,19 @@ public class DisposableClothInfo : ClothInfo
     /// <summary>
     /// Change the model size according to the distance from its spawner
     /// </summary>
-    public void ChangeSize()
+    public void ChangeSizeAndLook()
     {
         if (Vector3.Distance(transform.position, spawner.transform.position) > enlargeDistance)
         {
             transform.localScale = originalScale;
+            largeModel.SetActive(true);
+            smallModel.SetActive(false);
         }
         else
         {
             transform.localScale = spawner.transform.localScale;
+            largeModel.SetActive(false);
+            smallModel.SetActive(true);
         }
     }
 
@@ -86,7 +92,10 @@ public class DisposableClothInfo : ClothInfo
         //spawner.currentCreatedModel = null;
         ////spawner.GetComponent<MeshRenderer>().enabled = true;
         //Destroy(gameObject);
-        StartCoroutine(UngrabProc(e));
+        if (!IsGrabbed())
+        {
+            StartCoroutine(UngrabProc(e));
+        }
     }
 
     private void OnDestroy()

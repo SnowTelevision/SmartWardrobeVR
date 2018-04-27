@@ -27,14 +27,14 @@ public class RealBodyWearCloth : MonoBehaviour
             currentVirtualCloth.transform.localScale = currentVirtualCloth.originalScale;
         }
 
-        if (clothes.Count > 0 || currentVirtualCloth != null)
-        {
-            bodyModel.SetActive(false);
-        }
-        else
-        {
-            bodyModel.SetActive(true);
-        }
+        //if (clothes.Count > 0 || currentVirtualCloth != null)
+        //{
+        //    bodyModel.SetActive(false);
+        //}
+        //else
+        //{
+        //    bodyModel.SetActive(true);
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -145,12 +145,15 @@ public class RealBodyWearCloth : MonoBehaviour
             newCloth.GetComponent<Rigidbody>().velocity = Vector3.zero;
             newCloth.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             newCloth.isWeared = true;
+            newCloth.shouldGoBackToWwardrobe = false;
         }
         else
         {
             if (currentVirtualCloth != null)
             {
                 currentVirtualCloth.GetComponent<Collider>().enabled = false;
+                Destroy(HologramDisplayer.currentHologram);
+                currentVirtualCloth.displayingModel.SetActive(true);
 
                 // Only return the cloth if it is from the wardrobe menu and not from the hand history or saved menu
                 if (!currentVirtualCloth.GetComponent<DisposableClothInfo>())
@@ -170,9 +173,11 @@ public class RealBodyWearCloth : MonoBehaviour
             newCloth.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             newCloth.isWeared = true;
             //print(newCloth.name + " is weared");
-            newCloth.GetComponent<MeshRenderer>().enabled = false;
+            //newCloth.GetComponent<MeshRenderer>().enabled = false;
             newCloth.transform.localScale = newCloth.originalScale;
             //newCloth.GetComponent<Collider>().enabled = false;
+            newCloth.displayingModel.SetActive(false);
+            HologramDisplayer.currentHologram = Instantiate(newCloth.alternateWearingModel);
         }
 
         if (!newCloth.freelyWear)
@@ -196,12 +201,16 @@ public class RealBodyWearCloth : MonoBehaviour
             thisCloth.transform.parent = null;
             thisCloth.GetComponent<Rigidbody>().useGravity = true;
             thisCloth.GetComponent<Rigidbody>().isKinematic = false;
+
+            thisCloth.shouldGoBackToWwardrobe = true;
         }
         else
         {
-            thisCloth.GetComponent<MeshRenderer>().enabled = true;
+            //thisCloth.GetComponent<MeshRenderer>().enabled = true;
             thisCloth.transform.localScale = thisCloth.originalScale;
+            currentVirtualCloth.displayingModel.SetActive(true);
             currentVirtualCloth = null;
+            Destroy(HologramDisplayer.currentHologram);
         }
     }
 }

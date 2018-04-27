@@ -35,7 +35,7 @@ public class EmissionAnimation : MonoBehaviour
             //Color emissionColor = m.material.GetColor("_EmissionColor");
             //emissionColor *= Mathf.PingPong(Time.time / emissionBreathLength, 1);// Mathf.LinearToGammaSpace(Mathf.PingPong(Time.time / emissionBreathLength, 1));
             //m.material.SetColor("_EmissionColor", emissionColor);
-            m.material.SetColor("_EmissionColor", Color.white * Mathf.PingPong(Time.time / emissionBreathLength, 1) * emissionStrength); 
+            m.material.SetColor("_EmissionColor", Color.white * (1f - Mathf.Clamp01(Mathf.PingPong(Time.time / emissionBreathLength, 1.25f))) * emissionStrength);
             //print(m.material.GetColor("_EmissionColor"));
         }
     }

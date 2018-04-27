@@ -187,8 +187,18 @@ public class OrganizeHandMenuItems : MonoBehaviour
 
             if (isHistory)
             {
-                List<Transform> tFl = new List<Transform>(historyClothMenuWrap.GetComponentsInChildren<Transform>());
-                tFl.Remove(historyClothMenuWrap.transform);
+                List<Transform> tFl = new List<Transform>();
+                //tFl.Remove(historyClothMenuWrap.transform);
+                foreach (Transform tF in historyClothMenuWrap.GetComponentsInChildren<Transform>())
+                {
+                    //if(tF.name. == "ModelAUserHistoryItemObject" ||
+                    //   tF.name == "ModelBUserHistoryItemObject" ||
+                    //   tF.name == "ModelCUserHistoryItemObject")
+                    if (tF.gameObject.layer == LayerMask.NameToLayer("MenuItem"))
+                    {
+                        tFl.Add(tF);
+                    }
+                }
 
                 foreach (Transform tF in tFl)
                 {
@@ -218,8 +228,19 @@ public class OrganizeHandMenuItems : MonoBehaviour
 
             if (isHistory)
             {
-                List<Transform> tFl = new List<Transform>(historyClothMenuWrap.GetComponentsInChildren<Transform>());
-                tFl.Remove(historyClothMenuWrap.transform);
+                //List<Transform> tFl = new List<Transform>(historyClothMenuWrap.GetComponentsInChildren<Transform>());
+                List<Transform> tFl = new List<Transform>();
+                //tFl.Remove(historyClothMenuWrap.transform);
+                foreach (Transform tF in historyClothMenuWrap.GetComponentsInChildren<Transform>())
+                {
+                    //if(tF.name. == "ModelAUserHistoryItemObject" ||
+                    //   tF.name == "ModelBUserHistoryItemObject" ||
+                    //   tF.name == "ModelCUserHistoryItemObject")
+                    if (tF.gameObject.layer == LayerMask.NameToLayer("MenuItem"))
+                    {
+                        tFl.Add(tF);
+                    }
+                }
 
                 foreach (Transform tF in tFl)
                 {
@@ -253,7 +274,7 @@ public class OrganizeHandMenuItems : MonoBehaviour
 
         //relativePosi.x = Mathf.Sin(Mathf.Deg2Rad * angle) * menuDistance;
         //relativePosi.z = Mathf.Cos(Mathf.Deg2Rad * angle) * menuDistance;
-        relativePosi.y += (1 + itemIndex) * 0.1f;
+        relativePosi.y += (1 + itemIndex) * 0.14f + 0.05f;
 
         return relativePosi;
     }

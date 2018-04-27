@@ -6,9 +6,10 @@ using VRTK;
 /// <summary>
 /// This script should be attached to every region of the wardrobe
 /// </summary>
-public class WardrobeClothOrganizer : MonoBehaviour
+public class WardrobeClothOrganizer : VRTK_InteractableObject
 {
     public GameObject highLight; // The highlight gameobject for this wardrobe region
+    public GameObject storedCloth; //
 
     // Use this for initialization
     void Start()
@@ -17,10 +18,32 @@ public class WardrobeClothOrganizer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    
 
+    public override void OnInteractableObjectTouched(InteractableObjectEventArgs e)
+    {
+        if (highLight.activeInHierarchy)
+        {
+            if (!storedCloth.activeInHierarchy)
+            {
+                storedCloth.SetActive(true);
+                storedCloth.GetComponent<BoxCollider>().size = GetComponent<BoxCollider>().size;
+                GetComponent<Collider>().enabled = false;
+            }
+        }
+
+        base.OnInteractableObjectTouched(e);
     }
+
+    //public override void OnInteractableObjectUntouched(InteractableObjectEventArgs e)
+    //{
+    //    if (!storedCloth.GetComponent<ClothInfo>().IsGrabbed())
+    //    {
+    //        storedCloth.SetActive(false);
+    //    }
+
+    //    base.OnInteractableObjectUntouched(e);
+    //}
 
     private void OnTriggerStay(Collider other)
     {

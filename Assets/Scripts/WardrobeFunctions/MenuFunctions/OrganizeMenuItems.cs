@@ -174,11 +174,11 @@ public class OrganizeMenuItems : MonoBehaviour
 
         if (isCircle)
         {
-            float angle = 360f / (float)menuItems.Count * itemIndex; // Calculate the angle between the item and the menu's forward direction
+            float angle = 360f / (float)menuItems.Count * itemIndex + 180; // Calculate the angle between the item and the menu's forward direction
 
             relativePosi.x = Mathf.Sin(Mathf.Deg2Rad * angle) * menuDistance;
             relativePosi.z = Mathf.Cos(Mathf.Deg2Rad * angle) * menuDistance;
-
+            relativePosi.y = 0.15f;
 
         }
         else

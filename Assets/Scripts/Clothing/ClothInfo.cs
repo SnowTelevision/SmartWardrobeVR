@@ -26,12 +26,16 @@ public class ClothInfo : VRTK_InteractableObject
     public Vector3 originalScale; // The scale the cloth should keeps
     public Coroutine returningMenuCoroutine; // The animation that is returning menu
     public bool justSaved; // Is the cloth just saved or un-saved
+    public Vector3 originalColliderSize;
+    public Vector3 realOriginalPositionInWardrobe;
+    public Quaternion realOriginalRotationInWardrobe;
+    public bool shouldGoBackToWwardrobe;
 
     // Use this for initialization
     public virtual void Start()
     {
-        gameObject.AddComponent<RealWorldObject>();
-        GetComponent<RealWorldObject>().alwaysMirror = false;
+        //gameObject.AddComponent<RealWorldObject>();
+        //GetComponent<RealWorldObject>().alwaysMirror = false;
 
         // If it is a "real" cloth, then add the RealWorldObject component
         //if (isRealCloth)
@@ -46,6 +50,15 @@ public class ClothInfo : VRTK_InteractableObject
         //    //    virtualAvatar.GetComponent<ClothInfo>().isRealCloth = false;
         //    //}
         //}
+        //originalColliderSize = GetComponent<BoxCollider>().size;
+        realOriginalPositionInWardrobe = transform.position;
+        realOriginalRotationInWardrobe = transform.rotation;
+    }
+
+    protected override void FixedUpdate()
+    {
+        GetComponent<Rigidbody>().WakeUp();
+        base.FixedUpdate();
     }
 
     // Update is called once per frame
@@ -55,6 +68,22 @@ public class ClothInfo : VRTK_InteractableObject
         {
             transform.parent = null;
         }
+        if (isRealCloth)
+        {
+            ChangeSize();
+
+            if (GetComponent<RealWorldObject>().mirrorCopy != null)
+            {
+                if (isWeared)
+                {
+                    GetComponent<RealWorldObject>().mirrorCopy.SetActive(true);
+                }
+                else
+                {
+                    GetComponent<RealWorldObject>().mirrorCopy.SetActive(false);
+                }
+            }
+        }
         //else if (!isRealCloth)
         //{
         //    if (!isWeared)
@@ -63,21 +92,36 @@ public class ClothInfo : VRTK_InteractableObject
         //    }
         //}
         CheckIfSaveCloth();
-        if (hasAlterWearingModel)
-        {
-            if(isWeared)
-            {
-                displayingModel.SetActive(false);
-                Destroy(HologramDisplayer.currentHologram);
-                HologramDisplayer.currentHologram = Instantiate(alternateWearingModel);
-            }
-            else
-            {
-                displayingModel.SetActive(true);
-            }
-        }
+        //if (hasAlterWearingModel)
+        //{
+        //    if (!isWeared)
+        //    {
+        //        displayingModel.SetActive(false);
+        //        Destroy(HologramDisplayer.currentHologram);
+        //        HologramDisplayer.currentHologram = Instantiate(alternateWearingModel);
+        //    }
+        //    else
+        //    {
+        //        displayingModel.SetActive(true);
+        //    }
+        //}
 
         base.Update();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void ChangeSize()
+    {
+        //if (IsGrabbed() && !clothLocation.GetTouchingObjects().Contains(grabbingObjects[0]))
+        //{
+        //    displayingModel.transform.localScale = originalScale;
+        //}
+        //else
+        //{
+        //    displayingModel.transform.localScale = originalScale * 0.1f;
+        //}
     }
 
     /// <summary>
@@ -127,6 +171,12 @@ public class ClothInfo : VRTK_InteractableObject
                 GetComponentInParent<TryOnCloth>().currentTryOnCloth = gameObject;
             }
         }
+        //else
+        //{
+        //    GetComponent<BoxCollider>().size = originalColliderSize;
+        //    clothLocation.GetComponent<Collider>().enabled = true;
+        //    displayingModel.SetActive(true);
+        //}
 
         base.OnInteractableObjectGrabbed(e);
     }
@@ -143,6 +193,16 @@ public class ClothInfo : VRTK_InteractableObject
             ReturnToMenuWrap();
         }
 
+        if (isRealCloth)
+        {
+            if (shouldGoBackToWwardrobe)
+            {
+                transform.position = realOriginalPositionInWardrobe;
+                transform.rotation = realOriginalRotationInWardrobe;
+                shouldGoBackToWwardrobe = false;
+            }
+        }
+
         base.OnInteractableObjectUngrabbed(e);
     }
 
@@ -153,7 +213,7 @@ public class ClothInfo : VRTK_InteractableObject
 
     public override void OnInteractableObjectTouched(InteractableObjectEventArgs e)
     {
-        GetComponent<MeshRenderer>().enabled = true;
+        //GetComponent<MeshRenderer>().enabled = true;
 
         base.OnInteractableObjectTouched(e);
     }
@@ -167,8 +227,14 @@ public class ClothInfo : VRTK_InteractableObject
     {
         if (isWeared)
         {
-            GetComponent<MeshRenderer>().enabled = false;
+            //GetComponent<MeshRenderer>().enabled = false;
         }
+
+        //if (isRealCloth && !isWeared)
+        //{
+        //    clothLocation.GetComponent<Collider>().enabled = true;
+        //    gameObject.SetActive(false);
+        //}
 
         base.OnInteractableObjectTouched(e);
     }
@@ -235,6 +301,6 @@ public class ClothInfo : VRTK_InteractableObject
         transform.localEulerAngles = Vector3.zero;
         returningMenuCoroutine = null;
         GetComponent<Collider>().enabled = true;
-        GetComponent<MeshRenderer>().enabled = true;
+        //GetComponent<MeshRenderer>().enabled = true;
     }
 }

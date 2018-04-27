@@ -13,6 +13,8 @@ public class GazeButtonSelection : MonoBehaviour
     public bool detectHoldingGrip; // Do we detect grip holding down
     public bool detectTouchpadReleased; // Do we detect touchpad released
     public float gazeSizeMultiplier; // How much the size of the object should increase when gazed
+    public GameObject alternateIncreaseSizeModel; // Increase the size of a specific gameobject 
+                                                  //instead of the gameobject that this script is attached to
 
     public UnityEvent toBeCalledWhenConfirmed; // The function to be called when
     public bool isLarge; // If the object is enlarged
@@ -51,7 +53,15 @@ public class GazeButtonSelection : MonoBehaviour
                 // If it is not enlarged & it is the first GazeButtonSelection component on the object
                 if (!isLarge && GetComponents<GazeButtonSelection>()[0] == this)
                 {
-                    transform.localScale *= gazeSizeMultiplier; // Make it large
+                    if (alternateIncreaseSizeModel == null)
+                    {
+                        transform.localScale *= gazeSizeMultiplier; // Make it large
+                    }
+                    else
+                    {
+                        alternateIncreaseSizeModel.transform.localScale *= gazeSizeMultiplier; // Make it large
+                    }
+
                     isLarge = true;
                 }
 
@@ -65,7 +75,15 @@ public class GazeButtonSelection : MonoBehaviour
                 // If it is enlarged & it is the first GazeButtonSelection component on the object
                 if (isLarge && GetComponents<GazeButtonSelection>()[0] == this)
                 {
-                    transform.localScale /= gazeSizeMultiplier; // Make it small
+                    if (alternateIncreaseSizeModel == null)
+                    {
+                        transform.localScale /= gazeSizeMultiplier; // Make it small
+                    }
+                    else
+                    {
+                        alternateIncreaseSizeModel.transform.localScale /= gazeSizeMultiplier; // Make it large
+                    }
+
                     isLarge = false;
                 }
             }

@@ -25,6 +25,11 @@ public class InteractableClothInfo : ClothInfo
     {
         if (isHistory)
         {
+            if (currentCreatedModel == null)
+            {
+                GetComponent<Collider>().enabled = true;
+            }
+
             base.Update();
         }
     }
@@ -38,12 +43,13 @@ public class InteractableClothInfo : ClothInfo
         }
 
         if (isHistory)
-        { 
+        {
             //GetComponent<MeshRenderer>().enabled = true;
             if (currentCreatedModel == null)
             {
                 currentCreatedModel = Instantiate(thisClothModel, transform.position, transform.rotation);
                 currentCreatedModel.GetComponent<DisposableClothInfo>().spawner = this;
+                GetComponent<Collider>().enabled = false;
             }
 
             base.BaseOnInteractableObjectTouched(e);

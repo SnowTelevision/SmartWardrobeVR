@@ -27,7 +27,7 @@ public class OpenCloseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CheckIfMirrorGazed())
+        if (CheckIfMirrorGazed() || firstLevelMenuWrap.activeInHierarchy)
         {
             if (!isMakingGesture)
             {
