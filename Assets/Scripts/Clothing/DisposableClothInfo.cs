@@ -5,7 +5,6 @@ using VRTK;
 
 public class DisposableClothInfo : ClothInfo
 {
-    public InteractableClothInfo spawner; // Which hand menu item spawned it
     public float enlargeDistance; // How far from its spawner will it become large model
     public GameObject largeModel; // The model to be displayed when it is large
     public GameObject smallModel; // The wire model to be displayed when it is small

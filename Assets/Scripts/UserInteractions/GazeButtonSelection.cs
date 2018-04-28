@@ -15,6 +15,9 @@ public class GazeButtonSelection : MonoBehaviour
     public float gazeSizeMultiplier; // How much the size of the object should increase when gazed
     public GameObject alternateIncreaseSizeModel; // Increase the size of a specific gameobject 
                                                   //instead of the gameobject that this script is attached to
+    public GameObject gazingSecondTitle;
+    public GameObject notGazingSecondTitle;
+    public GameObject pullSecondMenuTutorial;
 
     public UnityEvent toBeCalledWhenConfirmed; // The function to be called when
     public bool isLarge; // If the object is enlarged
@@ -69,6 +72,16 @@ public class GazeButtonSelection : MonoBehaviour
                 {
                     CallTargetFunction();
                 }
+
+                if (pullSecondMenuTutorial != null && !pullSecondMenuTutorial.GetComponent<OnlyActivateOnce>().hasOpened)
+                {
+                    pullSecondMenuTutorial.SetActive(true);
+                }
+                if (gazingSecondTitle != null)
+                {
+                    gazingSecondTitle.SetActive(true);
+                    notGazingSecondTitle.SetActive(false);
+                }
             }
             else
             {
@@ -85,6 +98,16 @@ public class GazeButtonSelection : MonoBehaviour
                     }
 
                     isLarge = false;
+                }
+
+                if (pullSecondMenuTutorial != null)
+                {
+                    //pullSecondMenuTutorial.SetActive(false);
+                }
+                if (gazingSecondTitle != null)
+                {
+                    gazingSecondTitle.SetActive(false);
+                    notGazingSecondTitle.SetActive(true);
                 }
             }
         }

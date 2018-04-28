@@ -23,6 +23,11 @@ public class TriggerPullsMenuItem : MonoBehaviour
     public Vector3 secondLevelMenuRelativePosition; // Where the second level menu should appear according to the user
     public bool isSecondLevel; // Is this second level menu
     public GameObject secondLevelMenuWheel; // The rotating wheel for second level menu
+    public OnlyActivateOnce pullSecondMenuTutorial;
+    public OnlyActivateOnce shiftSecondItemTutorial;
+    public GameObject pickUpSecondItemTutorial;
+    public OnlyActivateOnce guideCanvasPushSecondMenu;
+    public GameObject guideCanvasCloseFirstMenu;
 
     public Transform userHead; // The transform of user's head
     //public GameObject pullCenter; // Everytime the user starts pulling, a new center will be created at the position of the player, facing the menu item, and its up pointing up
@@ -67,16 +72,45 @@ public class TriggerPullsMenuItem : MonoBehaviour
                     if (ControllerTriggerDownGestureListener.lastGesture == "push")
                     {
                         StartCoroutine(SwitchToFirstLevel());
+
+                        if (guideCanvasPushSecondMenu != null && !guideCanvasPushSecondMenu.hasOpened)
+                        {
+                            guideCanvasPushSecondMenu.hasOpened = true;
+                        }
+                        if (guideCanvasCloseFirstMenu != null && !guideCanvasCloseFirstMenu.activeInHierarchy && !guideCanvasCloseFirstMenu.GetComponent<OnlyActivateOnce>().hasOpened)
+                        {
+                            guideCanvasCloseFirstMenu.SetActive(true);
+                        }
                     }
                     else if (ControllerTriggerDownGestureListener.lastGesture == "left")
                     {
                         GetComponent<SwapMenuItems>().MoveMenu(true);
+
+                        if (shiftSecondItemTutorial != null)
+                        {
+                            shiftSecondItemTutorial.hasOpened = true;
+
+                            if (!pickUpSecondItemTutorial.GetComponent<OnlyActivateOnce>().hasOpened)
+                            {
+                                pickUpSecondItemTutorial.SetActive(true);
+                            }
+                        }
                     }
                     else if (ControllerTriggerDownGestureListener.lastGesture == "right")
                     {
                         GetComponent<SwapMenuItems>().MoveMenu(false);
+
+                        if (shiftSecondItemTutorial != null)
+                        {
+                            shiftSecondItemTutorial.hasOpened = true;
+
+                            if (!pickUpSecondItemTutorial.GetComponent<OnlyActivateOnce>().hasOpened)
+                            {
+                                pickUpSecondItemTutorial.SetActive(true);
+                            }
+                        }
                     }
-                     
+
                     ControllerTriggerDownGestureListener.sControllerTriggerDownGestureListener.GestureStop();
                 }
             }
@@ -120,7 +154,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
 
         ControllerTriggerDownGestureListener.sControllerTriggerDownGestureListener.GestureStart(null, pullingController);
 
-        menuNavigator.GetComponent<VRTK_InteractableObject>().isGrabbable = false; // Don't let the user move the menu if the user start pulling a menu item
+        //menuNavigator.GetComponent<VRTK_InteractableObject>().isGrabbable = false; // Don't let the user move the menu if the user start pulling a menu item
         isPulling = true;
 
         //pullCenter = Instantiate(new GameObject(), ControllerEventsListener.latestEventSender.transform.position, Quaternion.identity); // Create new center
@@ -197,6 +231,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
 
         if (ControllerTriggerDownGestureListener.lastGesture == "pull" && !isSecondLevel)
         {
+            pullSecondMenuTutorial.hasOpened = true;
             StartCoroutine(SwitchToSecondLevel());
         }
 

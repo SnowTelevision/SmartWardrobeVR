@@ -5,8 +5,11 @@ using UnityEngine;
 public class ApplicationManager : MonoBehaviour
 {
     public GameObject defaultActiveScene; // The default scene that is active when the application starts
+    public GameObject openFirstMenuTutorial;
+    public GameObject startMarker;
 
     public static GameObject currentScene;
+    public static bool started;
 
     // Use this for initialization
     void Start()
@@ -18,5 +21,15 @@ public class ApplicationManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!started && other.GetComponent<RealBodyWearCloth>())
+        {
+            started = true;
+            startMarker.SetActive(false);
+            openFirstMenuTutorial.SetActive(true);
+        }
     }
 }

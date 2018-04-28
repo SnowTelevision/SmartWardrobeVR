@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 /// <summary>
 /// Use to place menu items in correct positions
@@ -19,9 +20,11 @@ public class OrganizeMenuItems : MonoBehaviour
     public float menuChangeAnimationDuration; // How long is the animation for changing between different menus
     public bool playExpandAnimation; // Should this menu play the expand animation when it is just opened
     public float itemTurningBackSpeed; // How fast an item turn back to its original rotation if it is not in front of the user
+    public OnlyActivateOnce rotateFirstMenuTutorial;
 
     public Vector3 menuLastLocalEuler; // The eulerangles of the menu on the last frame
     public Vector3 followPositionOffset; // The offset of the position it should follow
+    public float firstStartGrabRingTime;
 
     // Use this for initialization
     void OnEnable()
@@ -64,7 +67,37 @@ public class OrganizeMenuItems : MonoBehaviour
             RotateMenuItems();
             menuLastLocalEuler = transform.localEulerAngles;
         }
+
+        if (rotateFirstMenuTutorial != null && firstStartGrabRingTime == 0 && objectToFollow.GetComponent<VRTK_InteractableObject>().IsGrabbed())
+        {
+            //StartCoroutine(CloseRotateFirstMenuTutorial());
+
+            //if (firstStartGrabRingTime == 0)
+            {
+                firstStartGrabRingTime = Time.time;
+            }
+            //else
+            //{
+            //    if (Time.time - firstStartGrabRingTime > 2)
+            //    {
+            //        rotateFirstMenuTutorial.hasOpened = true;
+            //    }
+            //}
+        }
+        if (rotateFirstMenuTutorial != null && rotateFirstMenuTutorial.gameObject.activeInHierarchy && firstStartGrabRingTime != 0)
+        {
+            if (Time.time - firstStartGrabRingTime > 2)
+            {
+                rotateFirstMenuTutorial.hasOpened = true;
+            }
+        }
     }
+
+    //public IEnumerator CloseRotateFirstMenuTutorial()
+    //{
+    //    yield return new WaitForSeconds(2);
+    //    rotateFirstMenuTutorial.hasOpened = true;
+    //}
 
     private void FixedUpdate()
     {
@@ -174,7 +207,7 @@ public class OrganizeMenuItems : MonoBehaviour
 
         if (isCircle)
         {
-            float angle = 360f / (float)menuItems.Count * itemIndex + 180; // Calculate the angle between the item and the menu's forward direction
+            float angle = 360f / (float)menuItems.Count * itemIndex + 120; // Calculate the angle between the item and the menu's forward direction
 
             relativePosi.x = Mathf.Sin(Mathf.Deg2Rad * angle) * menuDistance;
             relativePosi.z = Mathf.Cos(Mathf.Deg2Rad * angle) * menuDistance;

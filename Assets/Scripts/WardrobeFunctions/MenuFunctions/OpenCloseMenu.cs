@@ -14,6 +14,9 @@ public class OpenCloseMenu : MonoBehaviour
     public float menuItemAnimationDuration; // How fast should each menu item drop down or raise up
     public Transform menuAppearPositionReference; // The transform that the appearing position of the menu that is relative to
     public Transform gestureRelativeReference; // What is the gesture relative to
+    public OnlyActivateOnce openFirstMenuTutorial;
+    public GameObject rotateFirstMenuTutorial;
+    public OnlyActivateOnce guideCanvasCloseFirstMenu;
 
     public bool menuOpened; // Is the menu opened
     public bool isMakingGesture; // If the user is making a gesture
@@ -27,7 +30,8 @@ public class OpenCloseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CheckIfMirrorGazed() || firstLevelMenuWrap.activeInHierarchy)
+        //if (CheckIfMirrorGazed() || firstLevelMenuWrap.activeInHierarchy)
+        if (ApplicationManager.started)
         {
             if (!isMakingGesture)
             {
@@ -48,9 +52,14 @@ public class OpenCloseMenu : MonoBehaviour
                 if (firstLevelMenuWrap.activeInHierarchy && ControllerTriggerDownGestureListener.lastGesture == "up")
                 {
                     StartCoroutine(CloseMenuAnimation());
+                    if (guideCanvasCloseFirstMenu != null && !guideCanvasCloseFirstMenu.hasOpened)
+                    {
+                        guideCanvasCloseFirstMenu.hasOpened = true;
+                    }
                 }
                 else if (!firstLevelMenuWrap.activeInHierarchy && !menuOpened && ControllerTriggerDownGestureListener.lastGesture == "down")
                 {
+                    openFirstMenuTutorial.hasOpened = true;
                     StartCoroutine(OpenMenuAnimation());
                 }
 
@@ -109,6 +118,7 @@ public class OpenCloseMenu : MonoBehaviour
         //{
         //    firstLevelMenuWrap.GetComponentInChildren<OrganizeMenuItems>().menuItems[i].transform.localPosition += Vector3.up * menuDropHeight;
         //}
+        rotateFirstMenuTutorial.SetActive(true);
     }
 
     /// <summary>

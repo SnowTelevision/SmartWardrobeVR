@@ -11,6 +11,9 @@ public class WardrobeDatabase : MonoBehaviour
     public Coroutine rotateDoorCoroutine;
     public float rotateDoorDuration;
     public float openDoorAngle;
+    public OnlyActivateOnce saveClothCanvasTutorial;
+    public OnlyActivateOnce anotherSaveClothCanvasTutorial;
+    public GameObject guideCanvasPushSecondMenu;
 
     public List<StoredClothInfo> storedClothInfo; // All the cloth that has their info stored in the wardrobe database
     public static WardrobeDatabase database; // The static reference of the database
@@ -40,6 +43,16 @@ public class WardrobeDatabase : MonoBehaviour
                 StopCoroutine(rotateDoorCoroutine);
             }
             rotateDoorCoroutine = StartCoroutine(RotateDoor(true));
+
+            if (saveClothCanvasTutorial != null && !saveClothCanvasTutorial.hasOpened)
+            {
+                saveClothCanvasTutorial.hasOpened = true;
+                anotherSaveClothCanvasTutorial.hasOpened = true;
+            }
+            if (guideCanvasPushSecondMenu != null && !guideCanvasPushSecondMenu.activeInHierarchy && !guideCanvasPushSecondMenu.GetComponent<OnlyActivateOnce>().hasOpened)
+            {
+                guideCanvasPushSecondMenu.SetActive(true);
+            }
         }
         else if (choseCloth.Count == 0 && !hasClosedDoor && isDoorOpen)
         {
@@ -62,7 +75,7 @@ public class WardrobeDatabase : MonoBehaviour
             leftDoorTargetEuler.y = openDoorAngle;
             isDoorOpen = true;
 
-            for (float t = 0; t < 1; 
+            for (float t = 0; t < 1;
                  t += Time.deltaTime / rotateDoorDuration / ((openDoorAngle - leftDoor.eulerAngles.y) / openDoorAngle))
             {
                 leftDoor.eulerAngles = Vector3.Lerp(leftDoorInitialEuler, leftDoorTargetEuler, t);
@@ -79,7 +92,7 @@ public class WardrobeDatabase : MonoBehaviour
             Vector3 leftDoorTargetEuler = Vector3.zero;
             isDoorOpen = false;
 
-            for (float t = 0; t < 1; 
+            for (float t = 0; t < 1;
                  t += Time.deltaTime / rotateDoorDuration / (leftDoor.eulerAngles.y / openDoorAngle))
             {
                 leftDoor.eulerAngles = Vector3.Lerp(leftDoorInitialEuler, leftDoorTargetEuler, t);

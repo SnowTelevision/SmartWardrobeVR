@@ -6,6 +6,7 @@ using VRTK;
 public class RealBodyWearCloth : MonoBehaviour
 {
     public GameObject bodyModel; // The default model for the player's body
+    public GameObject guideCanvasOpenWrist;
 
     public List<ClothInfo> clothes; // The cloth(es) currently wearing
     public ClothInfo currentVirtualCloth; // The virtual cloth that is currently trying on in the mirror
@@ -178,6 +179,11 @@ public class RealBodyWearCloth : MonoBehaviour
             //newCloth.GetComponent<Collider>().enabled = false;
             newCloth.displayingModel.SetActive(false);
             HologramDisplayer.currentHologram = Instantiate(newCloth.alternateWearingModel);
+
+            if (guideCanvasOpenWrist != null && !guideCanvasOpenWrist.activeInHierarchy && !guideCanvasOpenWrist.GetComponent<OnlyActivateOnce>().hasOpened)
+            {
+                guideCanvasOpenWrist.SetActive(true);
+            }
         }
 
         if (!newCloth.freelyWear)

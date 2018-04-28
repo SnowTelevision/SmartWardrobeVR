@@ -13,6 +13,8 @@ public class OrganizeHandMenuItems : MonoBehaviour
     public OrganizeHandMenuItems otherHandMenu; // The menu on the other hand
     public float menuDistance; // How far the hand menu items is away from the hand
     public float menuChangeAnimationDuration; // How long is the animation for open or close menu
+    public OnlyActivateOnce guideCanvasOpenWrist;
+    public GameObject saveClothCanvasTutorial;
 
     public GameObject userHead; // The head object of the user
     public Coroutine expandSavedMenuAnimation; // The animation expands saved menu 
@@ -58,6 +60,15 @@ public class OrganizeHandMenuItems : MonoBehaviour
                 savedClothMenuWrap.SetActive(true);
                 //print("open menu");
                 OpenMenu();
+
+                if (guideCanvasOpenWrist != null && !guideCanvasOpenWrist.hasOpened)
+                {
+                    guideCanvasOpenWrist.hasOpened = true;
+                }
+                if (saveClothCanvasTutorial != null && !saveClothCanvasTutorial.activeInHierarchy && !saveClothCanvasTutorial.GetComponent<OnlyActivateOnce>().hasOpened)
+                {
+                    saveClothCanvasTutorial.SetActive(true);
+                }
             }
         }
         else

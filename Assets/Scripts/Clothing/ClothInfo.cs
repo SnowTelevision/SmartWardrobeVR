@@ -18,6 +18,7 @@ public class ClothInfo : VRTK_InteractableObject
     public bool hasAlterWearingModel; // Does the cloth have an alternate model to be displayed when it is weared
     public GameObject alternateWearingModel; // The alternate wearing model
     public GameObject displayingModel; // The default displaying model when the cloth is not weared
+    public GameObject savedMarker;
 
     public bool isWeared; // If the cloth is currently weared
     public bool isTouchingUserBody; // If the cloth is currently touching the user's body and will be weared if the user ungrab it
@@ -30,6 +31,7 @@ public class ClothInfo : VRTK_InteractableObject
     public Vector3 realOriginalPositionInWardrobe;
     public Quaternion realOriginalRotationInWardrobe;
     public bool shouldGoBackToWwardrobe;
+    public InteractableClothInfo spawner; // Which hand menu item spawned it
 
     // Use this for initialization
     public virtual void Start()
@@ -147,10 +149,20 @@ public class ClothInfo : VRTK_InteractableObject
                     c => c.thisClothModel.name == userSavedMenuItemObject.thisClothModel.name))
                 {
                     WardrobeDatabase.database.choseCloth.Add(userSavedMenuItemObject);
+
+                    if (spawner.savedMarker != null && !spawner.savedMarker.activeInHierarchy)
+                    {
+                        spawner.savedMarker.SetActive(true);
+                    }
                 }
                 else
                 {
                     WardrobeDatabase.database.choseCloth.Remove(userSavedMenuItemObject);
+
+                    if (spawner.savedMarker != null && spawner.savedMarker.activeInHierarchy)
+                    {
+                        spawner.savedMarker.SetActive(false);
+                    }
                 }
             }
         }
@@ -165,7 +177,7 @@ public class ClothInfo : VRTK_InteractableObject
     {
         if (!isRealCloth)
         {
-            if (secondMenuWrapTryOn != null && gameObject == secondMenuWrapTryOn.currentFacingCloth)
+            if (secondMenuWrapTryOn != null && transform.parent.gameObject == secondMenuWrapTryOn.currentFacingCloth)
             {
                 GetComponentInParent<TryOnCloth>().currentTryOnClothOnMenu = belongingItemWrap.gameObject;
                 GetComponentInParent<TryOnCloth>().currentTryOnCloth = gameObject;

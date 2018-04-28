@@ -25,6 +25,10 @@ public class EmissionAnimation : MonoBehaviour
     void Update()
     {
         // print(Mathf.PingPong(Time.time / emissionBreathLength, 1));
+        foreach (MeshRenderer m in GetComponentsInChildren<MeshRenderer>())
+        {
+            m.material.EnableKeyword("_EMISSION");
+        }
 
         foreach (MeshRenderer m in clothMeshes)
         {

@@ -6,6 +6,8 @@ public class TryOnCloth : MonoBehaviour
 {
     public Transform secondMenuWheel; // The wheel for second menu
     public Vector3 secondMenuWheelRelativePosition; // The relative position of the second level wheel to the user
+    public GameObject pickUpSecondItemTutorial;
+    public Vector3 pickUpSecondItemTutorialRelativePosition;
 
     public GameObject currentFacingCloth; // The cloth that is currently in front of the user
     public GameObject currentTryOnCloth; // The cloth that the user is currently trying out
@@ -24,6 +26,16 @@ public class TryOnCloth : MonoBehaviour
     {
         //secondMenuWheel.position = GetComponent<OrganizeMenuItems>().objectToFollow.TransformPoint(secondMenuWheelRelativePosition);
         RotateFacingItemWithWheel();
+
+        if (pickUpSecondItemTutorial.activeInHierarchy)
+        {
+            pickUpSecondItemTutorial.transform.position = currentFacingCloth.transform.TransformPoint(pickUpSecondItemTutorialRelativePosition);
+        }
+
+        if (currentTryOnCloth != null)
+        {
+            pickUpSecondItemTutorial.GetComponent<OnlyActivateOnce>().hasOpened = true;
+        }
     }
 
     /// <summary>
