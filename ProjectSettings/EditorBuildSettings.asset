@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/VRTK/Examples/VRTK_SDKManager_Constructor.unity
-    guid: 3fb19ae213a4a4d45bb9ecd245a8fadb
+    path: Assets/Scenes/Demo 3.unity
+    guid: 3e66032c676ebe24287b9a53e4eeb222
