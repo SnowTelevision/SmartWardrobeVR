@@ -73,7 +73,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
                     {
                         StartCoroutine(SwitchToFirstLevel());
 
-                        if (guideCanvasPushSecondMenu != null && !guideCanvasPushSecondMenu.hasOpened)
+                        if (guideCanvasPushSecondMenu != null && !guideCanvasPushSecondMenu.hasOpened && guideCanvasPushSecondMenu.shouldOpen)
                         {
                             guideCanvasPushSecondMenu.hasOpened = true;
                         }

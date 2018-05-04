@@ -18,6 +18,7 @@ public class GazeButtonSelection : MonoBehaviour
     public GameObject gazingSecondTitle;
     public GameObject notGazingSecondTitle;
     public GameObject pullSecondMenuTutorial;
+    //public OnlyActivateOnce rotateFirstMenuTutorial;
 
     public UnityEvent toBeCalledWhenConfirmed; // The function to be called when
     public bool isLarge; // If the object is enlarged
@@ -73,7 +74,8 @@ public class GazeButtonSelection : MonoBehaviour
                     CallTargetFunction();
                 }
 
-                if (pullSecondMenuTutorial != null && !pullSecondMenuTutorial.GetComponent<OnlyActivateOnce>().hasOpened)
+                if (pullSecondMenuTutorial != null && //rotateFirstMenuTutorial.hasOpened && 
+                    !pullSecondMenuTutorial.GetComponent<OnlyActivateOnce>().hasOpened)
                 {
                     pullSecondMenuTutorial.SetActive(true);
                 }

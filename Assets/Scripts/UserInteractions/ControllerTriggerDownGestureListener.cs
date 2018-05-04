@@ -198,14 +198,14 @@ public class ControllerTriggerDownGestureListener : MonoBehaviour
         }
         // Positive Z (forward relate to reference transform)
         if (g.referenceTransform != null && g.alongZ && currentGestureLength >= g.validDistance &&
-            CalculateCurrentGestureDirection(g.referenceTransform.forward) < 30 && g.gestureDirection == 1)
+            CalculateCurrentGestureDirection(g.referenceTransform.forward) < 59 && g.gestureDirection == 1)
         {
             g.validated = true;
             return g.gestureName;
         }
         // Negative Z (backward relate to reference transform)
         if (g.referenceTransform != null && g.alongZ && currentGestureLength >= g.validDistance &&
-            CalculateCurrentGestureDirection(g.referenceTransform.forward) > 150 && g.gestureDirection == -1)
+            CalculateCurrentGestureDirection(g.referenceTransform.forward) > 121 && g.gestureDirection == -1)
         {
             g.validated = true;
             return g.gestureName;

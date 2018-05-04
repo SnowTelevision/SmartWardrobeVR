@@ -28,7 +28,7 @@ public class PlayerGazeDirectionRaycaster : MonoBehaviour
     public void Gaze()
     {
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.forward * 100);
+        //Debug.DrawRay(transform.position, transform.forward * 100);
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerCanBeGazed)) // If the gazing ray hit a gazable object
         {

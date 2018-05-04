@@ -182,7 +182,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1009861539378854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00097437017, y: -0.9763909, z: 0.07652484}
+  m_LocalPosition: {x: 0.00097437017, y: -0.855, z: 0.07652484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4122571829601978}
@@ -462,6 +462,7 @@ MonoBehaviour:
   realOriginalPositionInWardrobe: {x: 0, y: 0, z: 0}
   realOriginalRotationInWardrobe: {x: 0, y: 0, z: 0, w: 0}
   shouldGoBackToWwardrobe: 0
+  spawner: {fileID: 0}
   thisClothModel: {fileID: 1440059977320748, guid: 0f2659b983fc0b0498db816563c1aee7,
     type: 2}
   menuOwner: {fileID: 0}

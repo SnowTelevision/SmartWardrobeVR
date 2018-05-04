@@ -61,7 +61,7 @@ public class OrganizeHandMenuItems : MonoBehaviour
                 //print("open menu");
                 OpenMenu();
 
-                if (guideCanvasOpenWrist != null && !guideCanvasOpenWrist.hasOpened)
+                if (guideCanvasOpenWrist != null && !guideCanvasOpenWrist.hasOpened && guideCanvasOpenWrist.shouldOpen)
                 {
                     guideCanvasOpenWrist.hasOpened = true;
                 }

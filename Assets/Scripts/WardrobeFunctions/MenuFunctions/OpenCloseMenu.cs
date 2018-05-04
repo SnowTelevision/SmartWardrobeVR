@@ -52,7 +52,7 @@ public class OpenCloseMenu : MonoBehaviour
                 if (firstLevelMenuWrap.activeInHierarchy && ControllerTriggerDownGestureListener.lastGesture == "up")
                 {
                     StartCoroutine(CloseMenuAnimation());
-                    if (guideCanvasCloseFirstMenu != null && !guideCanvasCloseFirstMenu.hasOpened)
+                    if (guideCanvasCloseFirstMenu != null && !guideCanvasCloseFirstMenu.hasOpened && guideCanvasCloseFirstMenu.shouldOpen)
                     {
                         guideCanvasCloseFirstMenu.hasOpened = true;
                     }

@@ -44,7 +44,7 @@ public class WardrobeDatabase : MonoBehaviour
             }
             rotateDoorCoroutine = StartCoroutine(RotateDoor(true));
 
-            if (saveClothCanvasTutorial != null && !saveClothCanvasTutorial.hasOpened)
+            if (saveClothCanvasTutorial != null && !saveClothCanvasTutorial.hasOpened && saveClothCanvasTutorial.shouldOpen)
             {
                 saveClothCanvasTutorial.hasOpened = true;
                 anotherSaveClothCanvasTutorial.hasOpened = true;

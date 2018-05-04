@@ -9,7 +9,7 @@ Material:
   m_Name: WardrobeUI_wrist_light
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -73,4 +73,4 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0.17647058, g: 0.95050716, b: 3, a: 1}
+    - _EmissionColor: {r: 0.38, g: 0.9859998, b: 2, a: 1}
