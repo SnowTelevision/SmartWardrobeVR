@@ -124,6 +124,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 39cb67743b21240baa0364593410e5bf, type: 2}
   m_StaticBatchInfo:
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableWhenIdle: 0
-  allowedNearTouchControllers: 0
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   allowedTouchControllers: 0
   ignoredColliders: []
   isGrabbable: 0
@@ -293,8 +294,6 @@ MonoBehaviour:
   pointerActivatesUseAction: 0
   useOverrideButton: 0
   allowedUseControllers: 0
-  objectHighlighter: {fileID: 0}
-  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
   isRealCloth: 0
   clothLocalPosition: {x: 0, y: 0, z: 0}
@@ -308,7 +307,7 @@ MonoBehaviour:
     type: 2}
   savedItemModel: {fileID: 0}
   hasAlterWearingModel: 0
-  alternateWearingModel: {fileID: 1711872854491126, guid: a4d389085e35ce944a080d15f8cf5dc7,
+  alternateWearingModel: {fileID: 1510894254285156, guid: 5013598449527504881fec7dd4efbd7b,
     type: 2}
   displayingModel: {fileID: 1594234039095524}
   savedMarker: {fileID: 1016089376749822}

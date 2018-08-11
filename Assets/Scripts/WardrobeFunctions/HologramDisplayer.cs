@@ -5,6 +5,7 @@ using UnityEngine;
 public class HologramDisplayer : MonoBehaviour
 {
     public Transform wheel;
+    public GameObject wheelHandle; // The arc handle for the wheel
 
     public static GameObject currentHologram;
 
@@ -20,10 +21,12 @@ public class HologramDisplayer : MonoBehaviour
         if (currentHologram == null)
         {
             wheel.gameObject.SetActive(false);
+            wheelHandle.SetActive(false);
         }
         else
         {
             wheel.gameObject.SetActive(true);
+            wheelHandle.SetActive(true);
             transform.rotation = wheel.rotation;
             currentHologram.transform.position = transform.position;
             currentHologram.transform.rotation = transform.rotation;

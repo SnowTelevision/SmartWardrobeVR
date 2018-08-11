@@ -50,9 +50,9 @@ public class OrganizeHandMenuItems : MonoBehaviour
     {
         //print("up: " + Vector3.Angle(userHead.transform.up, transform.up) + ", forward: " + Vector3.Angle(userHead.transform.forward, transform.forward));
 
-        // If the controller is upside-down relative to the head and is pointing to the head's relative forward direction
-        if (Vector3.Angle(userHead.transform.up, transform.up) >= 150 &&
-            Vector3.Angle(userHead.transform.forward, transform.forward) <= 30)
+        // If the controller is upside-down relative to the head // and is pointing to the head's relative forward direction
+        if (Vector3.Angle(userHead.transform.up, transform.up) >= 150)
+            //&& Vector3.Angle(userHead.transform.forward, transform.forward) <= 30)
         {
             if (!historyClothMenuWrap.activeInHierarchy)
             {

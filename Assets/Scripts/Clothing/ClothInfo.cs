@@ -30,7 +30,7 @@ public class ClothInfo : VRTK_InteractableObject
     public Vector3 originalColliderSize;
     public Vector3 realOriginalPositionInWardrobe;
     public Quaternion realOriginalRotationInWardrobe;
-    public bool shouldGoBackToWwardrobe;
+    public bool shouldGoBackToWwardrobe; // Also says if the cloth is in the wardrobe or not
     public InteractableClothInfo spawner; // Which hand menu item spawned it
 
     // Use this for initialization

@@ -122,6 +122,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 14998e968d277594c951e3ce0ec68eaf, type: 2}
   m_StaticBatchInfo:
@@ -156,6 +157,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 20ca3fd6f7b944059ab4d18e0d736b68, type: 2}
   m_StaticBatchInfo:
@@ -242,6 +244,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95917850953923926
 Animator:
   serializedVersion: 3
@@ -259,6 +262,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114176012594648006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableWhenIdle: 1
-  allowedNearTouchControllers: 0
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   allowedTouchControllers: 0
   ignoredColliders: []
   isGrabbable: 1
@@ -316,8 +320,6 @@ MonoBehaviour:
   pointerActivatesUseAction: 0
   useOverrideButton: 0
   allowedUseControllers: 0
-  objectHighlighter: {fileID: 0}
-  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
   isRealCloth: 0
   clothLocalPosition: {x: 0, y: 0, z: 0}
@@ -332,9 +334,10 @@ MonoBehaviour:
   savedItemModel: {fileID: 1804499626969868, guid: 6e92c7758db397c4f83c2a154907c2a6,
     type: 2}
   hasAlterWearingModel: 0
-  alternateWearingModel: {fileID: 1999627660128898, guid: 6af4a65a621b20b42a93c15d67065e0a,
+  alternateWearingModel: {fileID: 1478837992300820, guid: 2e2d95dafe2b2df49a09f3d6fa728deb,
     type: 2}
   displayingModel: {fileID: 1247258839599302}
+  savedMarker: {fileID: 0}
   isWeared: 0
   isTouchingUserBody: 0
   clothLocation: {fileID: 0}

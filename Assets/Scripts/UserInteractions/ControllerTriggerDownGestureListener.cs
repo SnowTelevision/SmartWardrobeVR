@@ -15,8 +15,14 @@ public class ControllerTriggerDownGestureListener : MonoBehaviour
     public GestureInformation[] gesturesInformation; // The information for all gestures
     public GameObject gestureArrowHead; // The arrow head of the arrow that represents the gesture
     public GameObject gestureArrowLine;
-    public Material normalArrowColor; // The color of arrow when it is not a valid gesture
-    public Material validArrowColor; // The color of arrow when it is a valid gesture
+    public Material normalArrowHeadMaterial; // The material of arrow head when it is not a valid gesture
+    public Material validArrowHeadMaterial; // The material of arrow head when it is a valid gesture
+    public Material normalArrowLineMaterial; // The material of arrow line when it is not a valid gesture
+    public Material validArrowLineMaterial; // The material of arrow line when it is a valid gesture
+    public float gestureLineMaxWidth; // The maximum width of the line for the gesture when the user just starts a gesture
+    public float gestureLineWidthShrinkRootFactor; // width = max - (length / m) ^ n , this is the value of n
+    public float gestureLineWidthShrinkSpeedFactor; // this is the value of m
+    public float gestureLineMinWidth; // The minimum width of the line for the gesture when the user is pulling the gesture
 
     public static string lastGesture; // The last gesture the user just finished making
     public Transform userHeadTransform; // The user's head's transform
@@ -74,33 +80,34 @@ public class ControllerTriggerDownGestureListener : MonoBehaviour
     /// </summary>
     public void DrawCurrentGesture()
     {
-        currentGestureLength = CalculateCurrentGestureLength();
+        //currentGestureLength = CalculateCurrentGestureScale();
         currentGestureVector = currentGestureController.position - gestureStartWorldPosition;
 
         gestureArrowLine.transform.position = gestureStartWorldPosition + currentGestureVector / 2f;
         gestureArrowLine.transform.LookAt(currentGestureController);
-        gestureArrowLine.transform.localScale = new Vector3(1, 1, currentGestureLength / 2f);
+        gestureArrowLine.transform.localScale = CalculateCurrentGestureScale();
+        currentGestureLength = gestureArrowLine.transform.localScale.z;
         gestureArrowHead.transform.position = currentGestureController.position;
         gestureArrowHead.transform.rotation = gestureArrowLine.transform.rotation;
         //gestureArrowHead.transform.LookAt(gestureArrowHead.transform.position + gestureArrowHead.transform.forward, ())
 
-        if (lastGesture == "")
+        if (lastGesture == "") // If the gesture doesn't valid any entry, use normal material
         {
-            gestureArrowHead.GetComponentInChildren<MeshRenderer>().material = normalArrowColor;
-            gestureArrowLine.GetComponentInChildren<MeshRenderer>().material = normalArrowColor;
+            gestureArrowHead.GetComponentInChildren<MeshRenderer>().material = normalArrowHeadMaterial;
+            gestureArrowLine.GetComponentInChildren<MeshRenderer>().material = normalArrowLineMaterial;
         }
-        else
+        else // If the gesture is valid, use valid material
         {
-            gestureArrowHead.GetComponentInChildren<MeshRenderer>().material = validArrowColor;
-            gestureArrowLine.GetComponentInChildren<MeshRenderer>().material = validArrowColor;
+            gestureArrowHead.GetComponentInChildren<MeshRenderer>().material = validArrowHeadMaterial;
+            gestureArrowLine.GetComponentInChildren<MeshRenderer>().material = validArrowLineMaterial;
         }
 
-        if (!gestureArrowHead.activeInHierarchy)
+        if (!gestureArrowHead.activeInHierarchy) // Change the material back whenever the user cancels a gesture
         {
             gestureArrowHead.SetActive(true);
-            gestureArrowHead.GetComponentInChildren<MeshRenderer>().material = normalArrowColor;
+            gestureArrowHead.GetComponentInChildren<MeshRenderer>().material = normalArrowHeadMaterial;
             gestureArrowLine.SetActive(true);
-            gestureArrowLine.GetComponentInChildren<MeshRenderer>().material = normalArrowColor;
+            gestureArrowLine.GetComponentInChildren<MeshRenderer>().material = normalArrowLineMaterial;
         }
         // Test
         //Debug.DrawLine(gestureStartWorldPosition, currentGestureController.position);
@@ -111,17 +118,26 @@ public class ControllerTriggerDownGestureListener : MonoBehaviour
         //testLine.transform.localScale = new Vector3(0.03f, 0.03f, currentGestureLength);
     }
 
+
+
     /// <summary>
-    /// Calculate the length of the user's current gesture
+    /// Calculate the scale of the user's current gesture
     /// </summary>
     /// <returns></returns>
-    public float CalculateCurrentGestureLength()
+    public Vector3 CalculateCurrentGestureScale()
     {
-        float gestureLength = 0;
+        Vector3 gestureScale = Vector3.zero;
 
-        gestureLength = Vector3.Distance(currentGestureController.position, gestureStartWorldPosition);
+        float gestureLength = Vector3.Distance(currentGestureController.position, gestureStartWorldPosition) / 2f;
+        float gestureWidth = gestureLineMaxWidth - 
+                             Mathf.Clamp(Mathf.Pow(gestureLength * gestureLineWidthShrinkSpeedFactor, gestureLineWidthShrinkRootFactor), 
+                                         0, (gestureLineMaxWidth - gestureLineMinWidth));
 
-        return gestureLength;
+        gestureScale.z = gestureLength;
+        gestureScale.x = gestureWidth;
+        gestureScale.y = gestureWidth;
+
+        return gestureScale;
     }
 
     /// <summary>

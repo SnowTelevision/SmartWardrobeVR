@@ -130,9 +130,8 @@ public class WardrobeDatabase : MonoBehaviour
             foreach (StoredClothInfo sC in storedClothInfo)
             {
                 if (sC.isSaved &&
-                    sC.clothMarkerColor == wO.highLight.GetComponent<MeshRenderer>().material.color)//.r == wO.highLight.GetComponent<MeshRenderer>().material.color.r &&
-                                                                                                    //GetComponent<MeshRenderer>().material.color.g == wO.highLight.GetComponent<MeshRenderer>().material.color.g &&
-                                                                                                    //GetComponent<MeshRenderer>().material.color.b == wO.highLight.GetComponent<MeshRenderer>().material.color.b)
+                    sC.clothMarkerColor == wO.highLight.GetComponent<MeshRenderer>().material.color &&
+                    !sC.clothInfo.shouldGoBackToWwardrobe) //If the cloth is in the saved menu and the color is the correct color for this cloth and this cloth is in the wardrobe
                 {
                     wO.highLight.SetActive(true);
                 }
