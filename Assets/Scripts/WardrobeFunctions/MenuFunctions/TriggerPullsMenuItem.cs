@@ -337,6 +337,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
                 Vector3.Lerp(currentFacingSecondMenuItemStartEuler, Vector3.zero, t);
             yield return null;
         }
+        GetComponent<TryOnCloth>().currentFacingCloth = GetComponent<OrganizeMenuItems>().menuItems[0];
 
         firstLevelMenuWrap.SetActive(true);
 

@@ -7,6 +7,7 @@ public class RealBodyWearCloth : MonoBehaviour
 {
     public GameObject bodyModel; // The default model for the player's body
     public GameObject guideCanvasOpenWrist;
+    public TryOnCloth secondLevelMenu;
 
     public List<ClothInfo> clothes; // The cloth(es) currently wearing
     public ClothInfo currentVirtualCloth; // The virtual cloth that is currently trying on in the mirror
@@ -216,6 +217,7 @@ public class RealBodyWearCloth : MonoBehaviour
             thisCloth.transform.localScale = thisCloth.originalScale;
             currentVirtualCloth.displayingModel.SetActive(true);
             currentVirtualCloth = null;
+            //secondLevelMenu.currentTryOnCloth = null;
             Destroy(HologramDisplayer.currentHologram);
         }
     }

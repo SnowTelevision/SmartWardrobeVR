@@ -11,6 +11,10 @@ public class AR_GlassesBehavior : MonoBehaviour
     public Transform playerEye;
     public Rigidbody arGlassesFollowee; // The object the glasses will be attached with a joint
     public Vector3 jointConnectedAnchor;
+    public float minSpring;
+    public float minDamper;
+    public float springFactor;
+    public float damperFactor;
 
     // Use this for initialization
     void Start()
@@ -33,7 +37,7 @@ public class AR_GlassesBehavior : MonoBehaviour
             transform.LookAt(playerEye);
             transform.eulerAngles += new Vector3(0, 45, 0);
 
-            if(!GetComponent<SpringJoint>())
+            if (!GetComponent<SpringJoint>())
             {
                 gameObject.AddComponent<SpringJoint>();
                 GetComponent<SpringJoint>().connectedBody = arGlassesFollowee;
@@ -41,6 +45,18 @@ public class AR_GlassesBehavior : MonoBehaviour
                 GetComponent<SpringJoint>().anchor = Vector3.zero;
                 GetComponent<SpringJoint>().connectedAnchor = jointConnectedAnchor;
             }
+
+            UpdateSpringJoint();
         }
+    }
+
+    /// <summary>
+    /// Calculate the spring and damper for the spring joint
+    /// </summary>
+    public void UpdateSpringJoint()
+    {
+        float dist = Vector3.Distance(transform.position, arGlassesFollowee.position);
+        GetComponent<SpringJoint>().spring = minSpring + dist * springFactor;
+        GetComponent<SpringJoint>().damper = minDamper + dist * damperFactor;
     }
 }

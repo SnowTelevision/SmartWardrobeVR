@@ -10,7 +10,7 @@ public class TryOnCloth : MonoBehaviour
     public Vector3 pickUpSecondItemTutorialRelativePosition;
 
     public GameObject currentFacingCloth; // The cloth that is currently in front of the user
-    public GameObject currentTryOnCloth; // The cloth that the user is currently trying out
+    public GameObject currentTryOnCloth; // The cloth that the user is currently trying out (This will be changed as soon as the user start grabbing the cloth
     public GameObject currentTryOnClothOnMenu; // The cloth in the menu that is currently tried on by the user
     public Vector3 secondMenuWheelLastEuler; // What's the euler angles of second menu wheel in the last frame
     public Vector3 userBodyLastEuler; // What's the euler angles of the user body in the last frame
