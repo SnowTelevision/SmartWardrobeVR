@@ -33,11 +33,11 @@ public class ApplicationManager : MonoBehaviour
             started = true;
             startMarker.SetActive(false);
             //openFirstMenuTutorial.SetActive(true);
-            arGlasses.SetActive(true);
             arGlasses.transform.SetParent(playerBody.transform);
             arGlasses.transform.localPosition = arGlassesRelativeAppearPosition;
             arGlasses.transform.localEulerAngles = new Vector3(0, 180, 0);
             arGlasses.transform.SetParent(null);
+            arGlasses.SetActive(true);
         }
     }
 }

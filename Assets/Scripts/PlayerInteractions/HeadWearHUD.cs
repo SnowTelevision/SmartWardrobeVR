@@ -6,6 +6,10 @@ using VRTK;
 public class HeadWearHUD : MonoBehaviour
 {
     public Vector3 hudPosition; //The localPosition for the HUD
+    public GameObject wardrobeBatteryUI;
+    public GameObject wardrobeCapacityUI;
+    public GameObject wardrobeHumidityUI;
+    public GameObject wardrobeVentilationUI;
 
     public bool isWearingHUD; //Is the player wearing HUD or not
     public GameObject playerHUD; //The HUD game object for the player. This will get assigned after the player wear the HUD for the first time.
@@ -40,6 +44,10 @@ public class HeadWearHUD : MonoBehaviour
             !GetComponentInParent<VRTK_HeadsetFade>().IsFaded()) // If the HUD is on player's head but the UI is not turned on
         {
             playerHUDviewArea.SetActive(true);
+            wardrobeBatteryUI.SetActive(true);
+            wardrobeCapacityUI.SetActive(true);
+            wardrobeHumidityUI.SetActive(true);
+            wardrobeVentilationUI.SetActive(true);
         }
 
         //if (!isWearingHUD && playerHUDviewArea.activeInHierarchy) // If the HUD is not on player's head but the UI is not turned off
@@ -60,7 +68,7 @@ public class HeadWearHUD : MonoBehaviour
             playerHUD.transform.parent = FindObjectOfType<ApplicationManager>().playerBody.transform;
             playerHUD.transform.localRotation = Quaternion.identity;
             playerHUD.transform.localPosition = hudPosition;
-            playerHUD.GetComponent<MeshRenderer>().enabled = false;
+            playerHUD.GetComponent<MeshRenderer>().enabled = false; // "Hide" the AR glasses
 
             playerHUD.GetComponent<Rigidbody>().useGravity = false;
             playerHUD.GetComponent<Rigidbody>().isKinematic = true;
