@@ -232,6 +232,7 @@ public class TriggerPullsMenuItem : MonoBehaviour
         if (ControllerTriggerDownGestureListener.lastGesture == "pull" && !isSecondLevel)
         {
             pullSecondMenuTutorial.hasOpened = true;
+            shiftSecondItemTutorial.gameObject.SetActive(true);
             StartCoroutine(SwitchToSecondLevel());
         }
 

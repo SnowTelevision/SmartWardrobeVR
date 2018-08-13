@@ -12,8 +12,10 @@ public class WardrobeDatabase : MonoBehaviour
     public float rotateDoorDuration;
     public float openDoorAngle;
     public OnlyActivateOnce saveClothCanvasTutorial;
-    public OnlyActivateOnce anotherSaveClothCanvasTutorial;
     public GameObject guideCanvasPushSecondMenu;
+    public GameObject capacityUI;
+    public GameObject ventilationUI;
+    public GameObject humidityUI;
 
     public List<StoredClothInfo> storedClothInfo; // All the cloth that has their info stored in the wardrobe database
     public static WardrobeDatabase database; // The static reference of the database
@@ -47,12 +49,15 @@ public class WardrobeDatabase : MonoBehaviour
             if (saveClothCanvasTutorial != null && !saveClothCanvasTutorial.hasOpened && saveClothCanvasTutorial.shouldOpen)
             {
                 saveClothCanvasTutorial.hasOpened = true;
-                anotherSaveClothCanvasTutorial.hasOpened = true;
             }
             if (guideCanvasPushSecondMenu != null && !guideCanvasPushSecondMenu.activeInHierarchy && !guideCanvasPushSecondMenu.GetComponent<OnlyActivateOnce>().hasOpened)
             {
                 guideCanvasPushSecondMenu.SetActive(true);
             }
+
+            capacityUI.SetActive(false);
+            ventilationUI.SetActive(false);
+            humidityUI.SetActive(false);
         }
         else if (choseCloth.Count == 0 && !hasClosedDoor && isDoorOpen)
         {
@@ -63,6 +68,10 @@ public class WardrobeDatabase : MonoBehaviour
                 StopCoroutine(rotateDoorCoroutine);
             }
             rotateDoorCoroutine = StartCoroutine(RotateDoor(false));
+
+            capacityUI.SetActive(true);
+            ventilationUI.SetActive(true);
+            humidityUI.SetActive(true);
         }
     }
 

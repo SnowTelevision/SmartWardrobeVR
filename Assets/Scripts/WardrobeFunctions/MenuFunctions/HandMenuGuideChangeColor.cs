@@ -27,25 +27,26 @@ public class HandMenuGuideChangeColor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((isLeftController && other.transform.parent.parent.parent.name == "LeftController") ||
-            (!isLeftController && other.transform.parent.parent.parent.name == "RightController"))
+        if (other.name == "InsideTrigger")
         {
-            if (other.name == "InsideTrigger")
+            if ((isLeftController && other.transform.parent.parent.parent.name == "LeftController") ||
+                (!isLeftController && other.transform.parent.parent.parent.name == "RightController"))
             {
                 outerRing.SetActive(false);
                 innerRing.SetActive(false);
                 outerRingValid.SetActive(true);
                 innerRingValid.SetActive(true);
+
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if ((isLeftController && other.transform.parent.parent.parent.name == "LeftController") ||
-            (!isLeftController && other.transform.parent.parent.parent.name == "RightController"))
+        if (other.name == "InsideTrigger")
         {
-            if (other.name == "InsideTrigger")
+            if ((isLeftController && other.transform.parent.parent.parent.name == "LeftController") ||
+            (!isLeftController && other.transform.parent.parent.parent.name == "RightController"))
             {
                 outerRing.SetActive(true);
                 innerRing.SetActive(true);

@@ -17,6 +17,7 @@ public class OpenCloseMenu : MonoBehaviour
     public OnlyActivateOnce openFirstMenuTutorial;
     public GameObject rotateFirstMenuTutorial;
     public OnlyActivateOnce guideCanvasCloseFirstMenu;
+    public GameObject secondLevelMenuWrap;
 
     public bool menuOpened; // Is the menu opened
     public bool isMakingGesture; // If the user is making a gesture
@@ -35,7 +36,7 @@ public class OpenCloseMenu : MonoBehaviour
         {
             if (!isMakingGesture)
             {
-                if (ControllerEventsListener.triggerClicked)
+                if (!secondLevelMenuWrap.activeInHierarchy && ControllerEventsListener.triggerClicked)
                 {
                     isMakingGesture = true;
                     ControllerTriggerDownGestureListener.sControllerTriggerDownGestureListener.GestureStart(gestureRelativeReference, ControllerEventsListener.latestEventSender.transform);

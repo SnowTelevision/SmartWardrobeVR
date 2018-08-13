@@ -587,6 +587,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 0}
   m_StaticBatchInfo:
@@ -708,6 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5837af0260a118e4d808bfe0405429a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistOnLoad: 0
   autoManageScriptDefines: 1
   activeScriptingDefineSymbolsWithoutSDKClasses: []
   scriptAliasLeftController: {fileID: 0}
@@ -716,8 +718,6 @@ MonoBehaviour:
   autoLoadSetup: 1
   setups:
   - {fileID: 114571463435911392}
-  excludeTargetGroups: 1b0000001a000000
-  persistOnLoad: 0
 --- !u!114 &114229287396222742
 MonoBehaviour:
   m_ObjectHideFlags: 1

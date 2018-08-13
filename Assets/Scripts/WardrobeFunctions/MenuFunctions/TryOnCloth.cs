@@ -27,10 +27,10 @@ public class TryOnCloth : MonoBehaviour
         //secondMenuWheel.position = GetComponent<OrganizeMenuItems>().objectToFollow.TransformPoint(secondMenuWheelRelativePosition);
         RotateFacingItemWithWheel();
 
-        if (pickUpSecondItemTutorial.activeInHierarchy)
-        {
-            pickUpSecondItemTutorial.transform.position = currentFacingCloth.transform.TransformPoint(pickUpSecondItemTutorialRelativePosition);
-        }
+        //if (pickUpSecondItemTutorial.activeInHierarchy)
+        //{
+        //    pickUpSecondItemTutorial.transform.position = currentFacingCloth.transform.TransformPoint(pickUpSecondItemTutorialRelativePosition);
+        //}
 
         if (currentTryOnCloth != null)
         {

@@ -10,6 +10,9 @@ public class HeadWearHUD : MonoBehaviour
     public GameObject wardrobeCapacityUI;
     public GameObject wardrobeHumidityUI;
     public GameObject wardrobeVentilationUI;
+    public OnlyActivateOnce wearGlassesTutorial;
+    public GameObject openFirstMenuTutorial;
+    public Animator glassesAnimationController;
 
     public bool isWearingHUD; //Is the player wearing HUD or not
     public GameObject playerHUD; //The HUD game object for the player. This will get assigned after the player wear the HUD for the first time.
@@ -48,6 +51,12 @@ public class HeadWearHUD : MonoBehaviour
             wardrobeCapacityUI.SetActive(true);
             wardrobeHumidityUI.SetActive(true);
             wardrobeVentilationUI.SetActive(true);
+            wearGlassesTutorial.hasOpened = true;
+        }
+
+        if (wearGlassesTutorial.hasOpened && glassesAnimationController.GetCurrentAnimatorStateInfo(0).speed == 0) // If the glasses welcome animation is finished
+        {
+            openFirstMenuTutorial.SetActive(true);
         }
 
         //if (!isWearingHUD && playerHUDviewArea.activeInHierarchy) // If the HUD is not on player's head but the UI is not turned off
@@ -69,6 +78,7 @@ public class HeadWearHUD : MonoBehaviour
             playerHUD.transform.localRotation = Quaternion.identity;
             playerHUD.transform.localPosition = hudPosition;
             playerHUD.GetComponent<MeshRenderer>().enabled = false; // "Hide" the AR glasses
+            playerHUD.GetComponent<Collider>().enabled = false; // Disable the AR glasses's collision
 
             playerHUD.GetComponent<Rigidbody>().useGravity = false;
             playerHUD.GetComponent<Rigidbody>().isKinematic = true;

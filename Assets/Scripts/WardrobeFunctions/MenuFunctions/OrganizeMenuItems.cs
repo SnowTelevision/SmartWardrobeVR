@@ -89,6 +89,7 @@ public class OrganizeMenuItems : MonoBehaviour
             if (Time.time - firstStartGrabRingTime > 2)
             {
                 rotateFirstMenuTutorial.hasOpened = true;
+                //pullSecondMenuTutorial.SetActive(true);
             }
         }
     }
